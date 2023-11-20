@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import WelcomeItem from './WelcomeItem.vue'
+import Project from './Project.vue'
 import DocumentationIcon from './icons/IconDocumentation.vue'
 import ToolingIcon from './icons/IconTooling.vue'
 import EcosystemIcon from './icons/IconEcosystem.vue'
@@ -8,18 +8,32 @@ import SupportIcon from './icons/IconSupport.vue'
 </script>
 
 <template>
-  <WelcomeItem>
+  <Project>
     <template #icon>
       <DocumentationIcon />
     </template>
-    <template #heading>Documentation</template>
+    <template #heading>Ibotta</template>
 
-    Vue’s
-    <a href="https://vuejs.org/" target="_blank" rel="noopener">official documentation</a>
-    provides you with all information you need to get started.
-  </WelcomeItem>
+    Worked on the logged-in webapp experience for <a href="https://ibotta.com/home">Ibotta</a>.
 
-  <WelcomeItem>
+    temp list 
+    - created affiliate card components that share logic and has numerous options for size, sorting, and configurations allowing normal responsive collapsing or collapsing into a carousel at various screen sizes
+    - led gallery pagination project
+      - entirely front-end
+      - created pagination functionality
+        - takes an asynchronously-loaded list of CPG items and paginates with distinct categories
+        - allows instant re-pagination when changing category filters
+        - remembers selected filters and page history via custom state management
+    - implemented design for retailer price comparison
+    - standardized event-bus process for modal implementations
+    - integrated CPRA/CCPA solution to help protect customer privacy
+    - worked on numerous A/B tests
+      - all projects listed above were carefully tested before release
+      - multiple homepage reworks to change what content would be most noticable to savers
+      - 
+  </Project>
+
+  <Project>
     <template #icon>
       <ToolingIcon />
     </template>
@@ -39,9 +53,9 @@ import SupportIcon from './icons/IconSupport.vue'
     <br />
 
     More instructions are available in <code>README.md</code>.
-  </WelcomeItem>
+  </Project>
 
-  <WelcomeItem>
+  <Project>
     <template #icon>
       <EcosystemIcon />
     </template>
@@ -55,9 +69,9 @@ import SupportIcon from './icons/IconSupport.vue'
     you need more resources, we suggest paying
     <a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">Awesome Vue</a>
     a visit.
-  </WelcomeItem>
+  </Project>
 
-  <WelcomeItem>
+  <Project>
     <template #icon>
       <CommunityIcon />
     </template>
@@ -73,9 +87,9 @@ import SupportIcon from './icons/IconSupport.vue'
     the official
     <a href="https://twitter.com/vuejs" target="_blank" rel="noopener">@vuejs</a>
     twitter account for latest news in the Vue world.
-  </WelcomeItem>
+  </Project>
 
-  <WelcomeItem>
+  <Project>
     <template #icon>
       <SupportIcon />
     </template>
@@ -84,5 +98,5 @@ import SupportIcon from './icons/IconSupport.vue'
     As an independent project, Vue relies on community backing for its sustainability. You can help
     us by
     <a href="https://vuejs.org/sponsor/" target="_blank" rel="noopener">becoming a sponsor</a>.
-  </WelcomeItem>
+  </Project>
 </template>
