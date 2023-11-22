@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import WorkExperience from './components/WorkExperience.vue';
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
 </script>
@@ -13,6 +14,11 @@ import TheWelcome from './components/TheWelcome.vue'
   </header>
 
   <main>
+    <WorkExperience>
+      <template #name>Ibotta</template>
+      <template #from>2021</template>
+      <template #to>2023</template>
+    </WorkExperience>
     <TheWelcome />
   </main>
 </template>

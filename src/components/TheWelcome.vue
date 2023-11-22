@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Project from './Project.vue'
+import ProjectHighlight from './ProjectHighlight.vue'
 import DocumentationIcon from './icons/IconDocumentation.vue'
 import ToolingIcon from './icons/IconTooling.vue'
 import EcosystemIcon from './icons/IconEcosystem.vue'
@@ -8,7 +8,7 @@ import SupportIcon from './icons/IconSupport.vue'
 </script>
 
 <template>
-  <Project>
+  <ProjectHighlight>
     <template #icon>
       <DocumentationIcon />
     </template>
@@ -16,24 +16,35 @@ import SupportIcon from './icons/IconSupport.vue'
 
     Worked on the logged-in webapp experience for <a href="https://ibotta.com/home">Ibotta</a>.
 
-    temp list 
-    - created affiliate card components that share logic and has numerous options for size, sorting, and configurations allowing normal responsive collapsing or collapsing into a carousel at various screen sizes
-    - led gallery pagination project
-      - entirely front-end
-      - created pagination functionality
-        - takes an asynchronously-loaded list of CPG items and paginates with distinct categories
-        - allows instant re-pagination when changing category filters
-        - remembers selected filters and page history via custom state management
-    - implemented design for retailer price comparison
-    - standardized event-bus process for modal implementations
-    - integrated CPRA/CCPA solution to help protect customer privacy
-    - worked on numerous A/B tests
-      - all projects listed above were carefully tested before release
-      - multiple homepage reworks to change what content would be most noticable to savers
-      - 
-  </Project>
+    <ul>
+    <li>
+      created affiliate card components that share logic and has numerous options for size, sorting, and configurations allowing normal responsive collapsing or collapsing into a carousel at various screen sizes
+    </li>
+    <li>led gallery pagination project
+      <ul>
+        <li>entirely front-end</li>
+        <li>created pagination functionality
+          <ul>
+            <li>takes an asynchronously-loaded list of CPG items and paginates with distinct categories</li>
+            <li>allows instant re-pagination when changing category filters</li>
+            <li>remembers selected filters and page history via custom state management</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>implemented design for retailer price comparison</li>
+    <li>standardized event-bus process for modal implementations</li>
+    <li>integrated CPRA/CCPA solution to help protect customer privacy</li>
+    <li>worked on numerous A/B tests
+      <ul>
+        <li>all projects listed above were carefully tested before release</li>
+        <li>multiple homepage reworks to change what content would be most noticable to savers</li>
+      </ul>
+    </li>
+    </ul>
+  </ProjectHighlight>
 
-  <Project>
+  <ProjectHighlight>
     <template #icon>
       <ToolingIcon />
     </template>
@@ -53,9 +64,9 @@ import SupportIcon from './icons/IconSupport.vue'
     <br />
 
     More instructions are available in <code>README.md</code>.
-  </Project>
+  </ProjectHighlight>
 
-  <Project>
+  <ProjectHighlight>
     <template #icon>
       <EcosystemIcon />
     </template>
@@ -69,9 +80,9 @@ import SupportIcon from './icons/IconSupport.vue'
     you need more resources, we suggest paying
     <a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">Awesome Vue</a>
     a visit.
-  </Project>
+  </ProjectHighlight>
 
-  <Project>
+  <ProjectHighlight>
     <template #icon>
       <CommunityIcon />
     </template>
@@ -87,9 +98,9 @@ import SupportIcon from './icons/IconSupport.vue'
     the official
     <a href="https://twitter.com/vuejs" target="_blank" rel="noopener">@vuejs</a>
     twitter account for latest news in the Vue world.
-  </Project>
+  </ProjectHighlight>
 
-  <Project>
+  <ProjectHighlight>
     <template #icon>
       <SupportIcon />
     </template>
@@ -98,5 +109,5 @@ import SupportIcon from './icons/IconSupport.vue'
     As an independent project, Vue relies on community backing for its sustainability. You can help
     us by
     <a href="https://vuejs.org/sponsor/" target="_blank" rel="noopener">becoming a sponsor</a>.
-  </Project>
+  </ProjectHighlight>
 </template>
