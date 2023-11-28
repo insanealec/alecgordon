@@ -4,7 +4,7 @@ import WorkExperience from '../WorkExperience.vue';
 
 <template>
   <div class="p-3">
-    <h1 class="text-green-100">Alec Gordon</h1>
+    <h1 class="text-rose-100">Alec Gordon</h1>
     <div class="flex flex-col">
       <p>Experiences</p>
       <div class="flex flex-col indent">
@@ -18,7 +18,11 @@ import WorkExperience from '../WorkExperience.vue';
           <p>Pagination</p>
           <p>Price Comparison</p>
         </div>
-        <p>The McAlear Group</p>
+        <WorkExperience>
+          <template #name>The McAlear Group</template>
+          <template #from>2015</template>
+          <template #to>2021</template>
+        </WorkExperience>
       </div>
     </div>
   </div>
