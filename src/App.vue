@@ -1,24 +1,14 @@
 <script setup lang="ts">
-import WorkExperience from './components/WorkExperience.vue';
-import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
+import SideNav from './components/nav/SideNav.vue'
 </script>
 
 <template>
   <header>
-    <div class="wrapper">
-      <HelloWorld msg="Alec Gordon's personal site">
-        Project highlights incoming
-      </HelloWorld>
-    </div>
+    <SideNav></SideNav>
   </header>
 
   <main>
-    <WorkExperience>
-      <template #name>Ibotta</template>
-      <template #from>2021</template>
-      <template #to>2023</template>
-    </WorkExperience>
     <TheWelcome />
   </main>
 </template>
@@ -36,18 +26,11 @@ header {
 @media (min-width: 1024px) {
   header {
     display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+    padding-right: 4rem;
   }
 
   .logo {
     margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
   }
 }
 </style>
