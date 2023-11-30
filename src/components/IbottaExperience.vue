@@ -26,9 +26,6 @@
     </p>
 
     <!-- <ul>
-    <li>
-      created affiliate card components that share logic and has numerous options for size, sorting, and configurations allowing normal responsive collapsing or collapsing into a carousel at various screen sizes
-    </li>
     <li>led gallery pagination project
       <ul>
         <li>entirely front-end</li>

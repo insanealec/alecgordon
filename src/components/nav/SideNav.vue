@@ -17,7 +17,7 @@ import WorkExperience from '../WorkExperience.vue';
           </WorkExperience>
         </RouterLink>
         <div class="flex flex-col indent">
-          <p>Card Standardization</p>
+          <RouterLink to="/card-standardization">Card Standardization</RouterLink>
           <p>Pagination</p>
           <p>Price Comparison</p>
         </div>

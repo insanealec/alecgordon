@@ -11,6 +11,10 @@
     I excel in identifying and optimizing code, and my ability to engage with stakeholders to understand their unique needs has been a hallmark of my work.
   </p>
   <p class="paragraph">
+    Some of my key responsibilities have included independently managing multiple customer and internal-facing projects, identifying redundant or inefficient code for refactoring or rewriting into microservices, scoping tickets, and defining project requirements for a team of six. 
+    I also actively engaged with stakeholders to gain a deep understanding of their unique needs.
+  </p>
+  <p class="paragraph">
     My work experience has equipped me with a diverse skill set, allowing me to take ownership of complex solutions and drive projects to successful completion. 
     My primary objective is to consistently produce high-quality code on a daily basis.
   </p>
