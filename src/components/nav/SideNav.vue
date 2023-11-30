@@ -6,34 +6,30 @@ import WorkExperience from '../WorkExperience.vue';
   <div class="w-full p-3">
     <h1 class="text-rose-100">Alec Gordon</h1>
     <div class="flex flex-col">
-      <p class="underline">Experiences</p>
       <div class="flex flex-col">
-        <WorkExperience>
-          <template #name>Ibotta</template>
-          <template #from>2021</template>
-          <template #to>2023</template>
-        </WorkExperience>
+        <RouterLink :to="{ name: 'ibotta' }">
+          <WorkExperience>
+            <template #name>Ibotta</template>
+            <template #from>2021</template>
+            <template #to>2023</template>
+          </WorkExperience>
+        </RouterLink>
         <div class="flex flex-col indent">
           <p>Card Standardization</p>
           <p>Pagination</p>
           <p>Price Comparison</p>
         </div>
-        <WorkExperience>
-          <template #name>The McAlear Group</template>
-          <template #from>2015</template>
-          <template #to>2021</template>
-        </WorkExperience>
+        <RouterLink :to="{ name: 'mcalear' }">
+          <WorkExperience>
+            <template #name>The McAlear Group</template>
+            <template #from>2015</template>
+            <template #to>2021</template>
+          </WorkExperience>
+        </RouterLink>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-  h1 {
-    font-size: 2rem;
-    font-weight: bold;
-  }
-  .indent {
-    padding-left: 2rem;
-  }
 </style>

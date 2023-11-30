@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import TheWelcome from './components/TheWelcome.vue'
 import SideNav from './components/nav/SideNav.vue'
 </script>
 
@@ -8,8 +7,8 @@ import SideNav from './components/nav/SideNav.vue'
     <SideNav></SideNav>
   </header>
 
-  <main>
-    <TheWelcome />
+  <main class="py-8 px-2">
+    <RouterView></RouterView>
   </main>
 </template>
 
