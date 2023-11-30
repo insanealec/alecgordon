@@ -1,7 +1,3 @@
-<script setup lang="ts">
-//
-</script>
-
 <template>
   <h2>Hi! I'm Alec Gordon.</h2>
 
@@ -20,6 +16,3 @@
   </p>
 
 </template>
-
-<style scoped>
-</style>
