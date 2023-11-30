@@ -4,7 +4,9 @@ import WorkExperience from '../WorkExperience.vue';
 
 <template>
   <div class="w-full p-3">
-    <h1 class="text-rose-100">Alec Gordon</h1>
+    <RouterLink :to="{ name: 'home' }">
+      <h1>Alec Gordon</h1>
+    </RouterLink>
     <div class="flex flex-col">
       <div class="flex flex-col">
         <RouterLink :to="{ name: 'ibotta' }">

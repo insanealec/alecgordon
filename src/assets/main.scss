@@ -4,6 +4,7 @@
 
 
 body {
+  @apply bg-gradient-to-br from-slate-950 from-20% via-indigo-950 via-70% to-sky-950 to-90% text-white;
   min-height: 100vh;
 }
 
@@ -30,6 +31,14 @@ h2 {
   font-weight: 500;
 }
 
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.2rem;
+}
+
 .indent {
   padding-left: 2rem;
 }
@@ -39,15 +48,14 @@ h2 {
   padding: .25rem 0;
 }
 
-a,
-.green {
+a {
+  @apply text-cyan-300 visited:text-cyan-200;
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
   transition: 0.4s;
 }
 
 @media (hover: hover) {
   a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+    @apply bg-sky-950 text-white;
   }
 }

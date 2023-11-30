@@ -1,8 +1,8 @@
 <template>
   <div class="w-full flex flex-row justify-between content-center">
-    <h3>
+    <h4>
       <slot name="name"></slot>
-    </h3>
+    </h4>
     <span class="flex flex-row">
       <h4>
         <slot name="from"></slot>
