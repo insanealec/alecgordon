@@ -3,11 +3,11 @@ import WorkExperience from '../WorkExperience.vue';
 </script>
 
 <template>
-  <div class="p-3">
+  <div class="w-full p-3">
     <h1 class="text-rose-100">Alec Gordon</h1>
     <div class="flex flex-col">
-      <p>Experiences</p>
-      <div class="flex flex-col indent">
+      <p class="underline">Experiences</p>
+      <div class="flex flex-col">
         <WorkExperience>
           <template #name>Ibotta</template>
           <template #from>2021</template>

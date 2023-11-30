@@ -26,7 +26,6 @@ header {
 @media (min-width: 1024px) {
   header {
     display: flex;
-    padding-right: 4rem;
   }
 
   .logo {

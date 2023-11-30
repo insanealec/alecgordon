@@ -6,9 +6,7 @@
     <span class="flex flex-row">
       <h4>
         <slot name="from"></slot>
-      </h4>
-      &nbsp;&mdash;&nbsp;
-      <h4>
+        &mdash;
         <slot name="to"></slot>
       </h4>
     </span>
