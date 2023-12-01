@@ -28,6 +28,7 @@ import WorkExperience from '../WorkExperience.vue';
             <template #to>2021</template>
           </WorkExperience>
         </RouterLink>
+        <a href="https://github.com/insanealec"><h4>Github &#128279;</h4></a>
       </div>
     </div>
   </div>
