@@ -18,8 +18,8 @@ import WorkExperience from '../WorkExperience.vue';
         </RouterLink>
         <div class="flex flex-col indent">
           <RouterLink to="/card-standardization">Card Standardization</RouterLink>
-          <p>Pagination</p>
-          <p>Price Comparison</p>
+          <RouterLink to="/pagination">Pagination</RouterLink>
+          <RouterLink to="/misc">Miscellaneous</RouterLink>
         </div>
         <RouterLink :to="{ name: 'mcalear' }">
           <WorkExperience>

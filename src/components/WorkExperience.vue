@@ -1,6 +1,6 @@
 <template>
   <div class="w-full flex flex-row justify-between content-center">
-    <h4>
+    <h4 class="place">
       <slot name="name"></slot>
     </h4>
     <span class="flex flex-row">
@@ -14,5 +14,7 @@
 </template>
 
 <style scoped>
-/*  */
+.place {
+  margin-right: .35rem;
+}
 </style>
