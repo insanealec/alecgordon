@@ -13,4 +13,10 @@ import SideNav from './components/nav/SideNav.vue'
 </template>
 
 <style scoped>
+header, main {
+  @media (max-width: 1024px) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
 </style>

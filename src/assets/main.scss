@@ -5,14 +5,11 @@
 
 body {
   @apply bg-gradient-to-br from-slate-950 from-20% via-indigo-950 via-70% to-sky-950 to-90% text-white;
+  display: flex;
   min-height: 100vh;
 }
 
 @media (min-width: 1024px) {
-  body {
-    display: flex;
-  }
-
   #app {
     display: grid;
     grid-template-columns: 1fr 3fr;
