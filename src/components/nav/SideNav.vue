@@ -29,6 +29,7 @@ import WorkExperience from '../WorkExperience.vue';
           </WorkExperience>
         </RouterLink>
         <a href="https://github.com/insanealec"><h4>Github &#128279;</h4></a>
+        <RouterLink :to="{ name: 'betterlist'}">BetterList</RouterLink>
       </div>
     </div>
   </div>
