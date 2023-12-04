@@ -38,8 +38,8 @@ const addTerm = () => {
   console.log(term, term.value)
   // Check if Item term already exists
   let item: Item;
-  if (termList[term.value]) {
-    item = itemList[termList[term.value]];
+  if (termList.value[term.value]) {
+    item = itemList.value[termList.value[term.value]];
   } else {
     item = {
       id: crypto.randomUUID() as UUID,
