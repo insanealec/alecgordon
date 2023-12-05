@@ -1,27 +1,26 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { UUID } from 'crypto';
 
 interface Item {
-  id: UUID;
+  id: string;
   name: string;
-  category: UUID;
+  categoryID: string;
   isAssumedCategory: boolean;
 }
 interface ItemList {
-  [id: UUID]: Item;
+  [id: string]: Item;
 }
 interface TermList {
-  [name: string]: UUID;
+  [name: string]: string;
 }
 
 interface Category {
-  id: UUID;
+  id: string;
   name: string;
 }
 // TODO: Be able to fill out category and attach to Items
 interface CategoryList {
-  [id: UUID]: Category;
+  [id: string]: Category;
 }
 const DEFAULT_CATEGORY: Category = {
   id: '0000-0000-0000-0000-0000',
@@ -35,17 +34,17 @@ const readyList = ref([] as Item[]);
 const completeList = ref([] as Item[]);
 
 const addTerm = () => {
-  console.log(term, term.value)
+  if (!term.value) return;
   // Check if Item term already exists
   let item: Item;
   if (termList.value[term.value]) {
     item = itemList.value[termList.value[term.value]];
   } else {
     item = {
-      id: crypto.randomUUID() as UUID,
+      id: crypto.randomUUID(),
       name: term.value,
       // TODO: analyze term and try to match to category
-      category: DEFAULT_CATEGORY.id,
+      categoryID: DEFAULT_CATEGORY.id,
       isAssumedCategory: true,
     };
     itemList.value[item.id] = item;
@@ -73,7 +72,7 @@ const addComplete = (item: Item, index: number) => {
   <div className="flex flex-col w-full">
     <h2 className="w-full">Betterlist</h2>
     <form className="flex justify-between" @submit.prevent="addTerm">
-      <input type="text" list="terms" name="term" className="text-black" v-model="term" />
+      <input type="text" list="terms" name="term" className="text-black" v-model.trim="term" />
       <datalist id="terms">
         <option v-for="(id, term) in termList" :key="id" :value="term">{{ term }}</option>
       </datalist>
