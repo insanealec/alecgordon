@@ -1,17 +1,99 @@
+import { ref } from 'vue';
 import { defineStore } from 'pinia';
 
-export const useListStore = defineStore('list', {
-  state: () => {
-    return {
-      list: [] as string[],
-    };
-  },
-  actions: {
-    add(item: string) {
-      this.list.push(item);
-    },
-    remove(index: number) {
-      this.list.splice(index, 1);
-    },
+interface Item {
+  id: string;
+  name: string;
+  categoryID: string;
+  isAssumedCategory: boolean;
+}
+// "DB" for all items
+interface ItemList {
+  [id: string]: Item;
+}
+// "DB" for terms
+interface TermList {
+  [name: string]: string;
+}
+// Type for active list of items
+interface ListGroup {
+  [id: string]: string;
+}
+
+interface Category {
+  id: string;
+  name: string;
+}
+// TODO: Be able to fill out category and attach to Items
+interface CategoryList {
+  [id: string]: Category;
+}
+export const DEFAULT_CATEGORY: Category = {
+  id: '0000-0000-0000-0000-0000',
+  name: 'No Category',
+}
+
+export const useListStore = defineStore('list', () => {
+  const termList = ref({} as TermList);
+  const itemList = ref({} as ItemList);
+  const readyList = ref({} as ListGroup);
+  const completeList = ref({} as ListGroup);
+  const categoryList = ref({} as CategoryList);
+
+  const addTerm = (term: string, selectedCategory: string) => {
+    // No empty list terms
+    if (!term) return;
+    // Check if Item term already exists
+    let item: Item;
+    if (termList.value[term]) {
+      item = itemList.value[termList.value[term]];
+    } else {
+      item = {
+        id: crypto.randomUUID(),
+        name: term,
+        categoryID: selectedCategory,
+        isAssumedCategory: true,
+      };
+      itemList.value[item.id] = item;
+      termList.value[term] = item.id;
+    }
+    // Lists can have multiples of the item
+    readyList.value[crypto.randomUUID()] = item.id;
   }
+  
+  const addReady = (key: string) => {
+    readyList.value[key] = completeList.value[key];
+    delete completeList.value[key];
+  }
+  
+  const addComplete = (key: string) => {
+    completeList.value[key] = readyList.value[key];
+    delete readyList.value[key];
+  }
+
+  const addCategory = (category: Category) => {
+    categoryList.value[category.id] = category;
+  }
+
+  /* Setup */
+  
+  // Load categories if any have been saved before
+  const localCategories = localStorage.getItem('categories')
+  if (localCategories === null) {
+    addCategory(DEFAULT_CATEGORY);
+  } else {
+    // TODO: load categories from localstorage
+  }
+
+  return {
+    termList,
+    itemList,
+    readyList,
+    completeList,
+    categoryList,
+    addTerm,
+    addReady,
+    addComplete,
+    addCategory
+  };
 });
