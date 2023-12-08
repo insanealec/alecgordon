@@ -38,7 +38,7 @@ export const useListStore = defineStore('list', () => {
   const itemList = useStorage('itemList', {} as ItemList);
   const readyList = useStorage('readyList', {} as ListGroup);
   const completeList = useStorage('completeList', {} as ListGroup);
-  const categoryList = useStorage('categoryList', {} as CategoryList);
+  const categoryList = useStorage('categoryList', { [DEFAULT_CATEGORY.id]: DEFAULT_CATEGORY} as CategoryList);
 
   const addTerm = (term: string, selectedCategory: string) => {
     // No empty list terms
@@ -73,16 +73,6 @@ export const useListStore = defineStore('list', () => {
 
   const addCategory = (category: Category) => {
     categoryList.value[category.id] = category;
-  }
-
-  /* Setup */
-  
-  // Load categories if any have been saved before
-  const localCategories = localStorage.getItem('categories')
-  if (localCategories === null) {
-    addCategory(DEFAULT_CATEGORY);
-  } else {
-    // TODO: load categories from localstorage
   }
 
   return {
