@@ -24,8 +24,6 @@
     "autoprefixer": "^10.4.16",
     "eslint": "^8.49.0",
     "eslint-plugin-vue": "^9.17.0",
-    "flowbite": "^2.2.0",
-    "flowbite-vue": "^0.1.1",
     "npm-run-all2": "^6.1.1",
     "pinia": "^2.1.7",
     "postcss": "^8.4.31",
