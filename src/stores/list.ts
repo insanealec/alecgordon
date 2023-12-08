@@ -33,6 +33,16 @@ export const DEFAULT_CATEGORY: Category = {
   name: 'No Category',
 }
 
+// Grouping type exports
+export type {
+  Item,
+  ItemList,
+  TermList,
+  ListGroup,
+  Category,
+  CategoryList,
+};
+
 export const useListStore = defineStore('list', () => {
   const termList = useStorage('termList', {} as TermList);
   const itemList = useStorage('itemList', {} as ItemList);

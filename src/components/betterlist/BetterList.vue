@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useListStore, DEFAULT_CATEGORY } from '@/stores/list';
+import ListItem from './ListItem.vue';
 
 const store = useListStore();
 let term = ref('');
@@ -32,35 +33,15 @@ const addTerm = () => {
     <div class="flex flex-col w-1/2 border-r pr-1">
       <h3 class="w-full">List</h3>
       <div class="w-full flex flex-col">
-        <label class="flex flex-row items-center" v-for="(itemID, key) in store.readyList" :key="key">
-          <input class="item" type="checkbox" :checked="false" :name="store.itemList[itemID].name" :id="itemID" @change.prevent="store.addComplete(key.toString())" />
-          {{ store.itemList[itemID].name }}
-        </label>
+        <ListItem :list="store.readyList" :add-func="store.addComplete" :checked="false" />
       </div>
     </div>
     <div class="flex flex-col w-1/2 border-l pl-1">
       <h3 class="w-full">Complete</h3>
       <div class="w-full flex flex-col">
-        <label class="flex flex-row items-center" v-for="(itemID, key) in store.completeList" :key="key">
-          <input class="item" type="checkbox" :checked="true" :name="store.itemList[itemID].name" :id="itemID" @change.prevent="store.addReady(key.toString())" />
-          {{ store.itemList[itemID].name }}
-        </label>
+        <ListItem :list="store.completeList" :add-func="store.addReady" :checked="true" />
       </div>
     </div>
   </div>
 </div>
 </template>
-
-<style lang="scss" scoped>
-.item {
-  width: 1rem;
-  height: 1rem;
-  margin: 0.25rem;
-  border-radius: 0.25rem;
-
-  &:checked {
-    @apply shadow-cyan-500;
-    box-shadow: inset 0 0 0 1rem var(--tw-shadow-color);
-  }
-}
-</style>
