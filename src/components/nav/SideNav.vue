@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import WorkExperience from '../WorkExperience.vue';
+import ThemeToggle from './ThemeToggle.vue';
 </script>
 
 <template>
   <div class="w-full p-3">
-    <RouterLink :to="{ name: 'home' }">
-      <h1>Alec Gordon</h1>
-    </RouterLink>
+    <h1>
+      <RouterLink :to="{ name: 'home' }">Alec Gordon</RouterLink>
+    </h1>
+    <ThemeToggle />
     <div class="flex flex-col">
       <div class="flex flex-col">
         <RouterLink :to="{ name: 'ibotta' }">
