@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import { useListStore, DEFAULT_CATEGORY } from '@/stores/list';
 import ListItem from './ListItem.vue';
-import CategoryModal from './CategoryModal.vue';
+// import CategoryModal from './CategoryModal.vue';
 
 const store = useListStore();
 let term = ref('');
@@ -18,7 +18,7 @@ const addTerm = () => {
 <template>
 <div class="flex min-h-screen flex-col">
   <div class="flex flex-col w-full">
-    <CategoryModal />
+    <!-- <CategoryModal /> -->
     <h2 class="w-full">Betterlist</h2>
     <form class="flex" @submit.prevent="addTerm">
       <input type="text" list="terms" name="term" placeholder="Add item" v-model.trim="term" />
