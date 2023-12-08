@@ -1,5 +1,5 @@
-import { ref } from 'vue';
 import { defineStore } from 'pinia';
+import { useStorage } from '@vueuse/core';
 
 interface Item {
   id: string;
@@ -34,11 +34,11 @@ export const DEFAULT_CATEGORY: Category = {
 }
 
 export const useListStore = defineStore('list', () => {
-  const termList = ref({} as TermList);
-  const itemList = ref({} as ItemList);
-  const readyList = ref({} as ListGroup);
-  const completeList = ref({} as ListGroup);
-  const categoryList = ref({} as CategoryList);
+  const termList = useStorage('termList', {} as TermList);
+  const itemList = useStorage('itemList', {} as ItemList);
+  const readyList = useStorage('readyList', {} as ListGroup);
+  const completeList = useStorage('completeList', {} as ListGroup);
+  const categoryList = useStorage('categoryList', {} as CategoryList);
 
   const addTerm = (term: string, selectedCategory: string) => {
     // No empty list terms
