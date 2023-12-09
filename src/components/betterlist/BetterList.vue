@@ -28,7 +28,8 @@ const addTerm = () => {
       <select id="selectedCategory" v-model="selectedCategory" class="form-input2 text-black p-2">
         <option v-for="(category, id) in store.categoryList" :value="id" :key="id">{{ category.name }}</option>
       </select>
-      <button type="submit" class="form-button py-2 px-3 bg-cyan-500 text-white text-xt-sm font-semibold">Add</button>
+      <RouterLink to="/betterlist/categories" class="form-link-gear text-xs bg-indigo-600">Manage categories &#9881;</RouterLink>
+      <button type="submit" class="form-button py-2 px-3 bg-cyan-500 text-white font-semibold">Add</button>
     </form>
   </div>
   <div class="flex w-full h-auto">
@@ -63,39 +64,50 @@ $split: "(max-width: 1024px)";
   }
 }
 
-.form-label1 { 
-  grid-area: 1 / 1 / 2 / 3; 
+.form-label1 {
+  grid-area: 1 / 1 / 2 / 3;
 
   @media #{$split} {
     grid-area: 1 / 1 / 2 / 2;
   }
 }
-.form-label2 { 
-  grid-area: 1 / 3 / 2 / 5; 
+.form-label2 {
+  grid-area: 1 / 3 / 2 / 5;
 
   @media #{$split} {
     grid-area: 3 / 1 / 4 / 2;
   }
 }
-.form-input1 { 
-  grid-area: 2 / 1 / 3 / 3; 
+.form-input1 {
+  grid-area: 2 / 1 / 3 / 3;
 
   @media #{$split} {
     grid-area: 2 / 1 / 3 / 2;
   }
 }
-.form-input2 { 
-  grid-area: 2 / 3 / 3 / 5; 
+.form-input2 {
+  grid-area: 2 / 3 / 3 / 5;
 
   @media #{$split} {
     grid-area: 4 / 1 / 5 / 2;
   }
 }
-.form-button { 
+.form-link-gear {
+  grid-area: 1 / 5 / 2 / 6;
+  color: white !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media #{$split} {
+    grid-area: 4 / 2 / 5 / 3;
+  }
+}
+.form-button {
   grid-area: 2 / 5 / 3 / 6;
 
   @media #{$split} {
-    grid-area: 1 / 2 / 5 / 3;
+    grid-area: 1 / 2 / 4 / 3;
   }
 }
 </style>
