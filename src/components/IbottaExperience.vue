@@ -3,15 +3,15 @@
     <h2>Ibotta</h2>
 
     <p class="paragraph">
-      During my time as a Senior Fullstack Engineer at <a href="https://ibotta.com/home">Ibotta</a>, I led various projects aimed at enhancing the e-commerce web app. 
-      Notable achievements include improving accessibility, navigation improvements, and integrating GraphQL APIs. 
+      During my time as a Senior Fullstack Engineer at <a href="https://ibotta.com/home">Ibotta</a>, I led various projects aimed at enhancing the e-commerce web app.
+      Notable achievements include improving accessibility, navigation improvements, and integrating GraphQL APIs.
       My collaborative approach enabled me to share my expertise, fostering a culture of learning within the team.
     </p>
 
     <p class="paragraph">
-      A normal project cycle started with initiative planning where I'd take a project proposal and scope out as many epics and tickets the initiative needed. 
-      This often involved research into our supporting APIs and existing calls and structures on the website to see what could be re-used, and what would need made fresh. 
-      The initiative would start after a presentation of the initiative and epics to the team, which would then kick off ticket work. 
+      A normal project cycle started with initiative planning where I'd take a project proposal and scope out as many epics and tickets the initiative needed.
+      This often involved research into our supporting APIs and existing calls and structures on the website to see what could be re-used, and what would need made fresh.
+      The initiative would start after a presentation of the initiative and epics to the team, which would then kick off ticket work.
     </p>
 
     <p class="paragraph">
