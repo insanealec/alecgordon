@@ -70,12 +70,12 @@ export const useListStore = defineStore('list', () => {
     // Lists can have multiples of the item
     readyList.value[crypto.randomUUID()] = item.id;
   }
-  
+
   const addReady = (key: string) => {
     readyList.value[key] = completeList.value[key];
     delete completeList.value[key];
   }
-  
+
   const addComplete = (key: string) => {
     completeList.value[key] = readyList.value[key];
     delete readyList.value[key];

@@ -5,6 +5,7 @@ import CardStandardization from './components/projects/CardStandardization.vue';
 import PaginationProject from './components/projects/PaginationProject.vue';
 import MiscIbotta from './components/projects/MiscIbotta.vue';
 import BetterList from './components/betterlist/BetterList.vue';
+import CategoryManager from './components/betterlist/CategoryManager.vue';
 
 export default [
   { name: 'home', path: '/', component: AboutMe },
@@ -16,5 +17,6 @@ export default [
   { path: '/misc', component: MiscIbotta },
   // Demo programs
   { name: 'betterlist', path: '/betterlist', component: BetterList },
+  { path: '/betterlist/categories', component: CategoryManager },
 ];
 
