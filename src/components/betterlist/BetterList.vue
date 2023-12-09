@@ -19,13 +19,19 @@ const addTerm = () => {
   <div class="flex flex-col w-full">
     <h2 class="w-full">Betterlist</h2>
     <form class="flex" @submit.prevent="addTerm">
-      <input type="text" list="terms" name="term" placeholder="Add item" v-model.trim="term" />
-      <datalist id="terms">
-        <option v-for="(id, term) in store.termList" :key="id" :value="term">{{ term }}</option>
-      </datalist>
-      <select v-model="selectedCategory" class="text-black p-2">
-        <option v-for="(category, id) in store.categoryList" :value="id" :key="id">{{ category.name }}</option>
-      </select>
+      <div class="">
+        <label for="term" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Add item to list</label>
+        <input type="text" list="terms" id="term" name="term" placeholder="Item" v-model.trim="term" />
+        <datalist id="terms">
+          <option v-for="(id, term) in store.termList" :key="id" :value="term">{{ term }}</option>
+        </datalist>
+      </div>
+      <div class="">
+        <label for="selectedCategory" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Add to category</label>
+        <select id="selectedCategory" v-model="selectedCategory" class="text-black p-2">
+          <option v-for="(category, id) in store.categoryList" :value="id" :key="id">{{ category.name }}</option>
+        </select>
+      </div>
       <button type="submit" class="py-2 px-3 bg-cyan-500 text-white text-xt-sm font-semibold">Add</button>
     </form>
   </div>
