@@ -24,6 +24,7 @@ export default [
     children: [
       {
         path: '',
+        name: 'default',
         component: BetterList,
       },
       {
