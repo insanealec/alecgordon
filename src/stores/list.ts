@@ -85,7 +85,11 @@ export const useListStore = defineStore('list', () => {
     delete readyList.value[key];
   }
 
-  const addCategory = (category: Category) => {
+  const deleteCategory = (id: string) => {
+    delete categoryList.value[id];
+  }
+
+  const updateCategory = (category: Category) => {
     categoryList.value[category.id] = category;
   }
 
@@ -98,6 +102,7 @@ export const useListStore = defineStore('list', () => {
     addTerm,
     addReady,
     addComplete,
-    addCategory
+    deleteCategory,
+    updateCategory,
   };
 });
