@@ -32,6 +32,10 @@ export const DEFAULT_CATEGORY: Category = {
   id: '0000-0000-0000-0000-0000',
   name: 'No Category',
 }
+const DEFAULT_LIST = ['Pharmacy', 'Frozen', 'Household', 'Dairy', 'Bread'].reduce((acc, name) => {
+  const id = crypto.randomUUID();
+  return { ...acc, [id]: { id, name }};
+}, { [DEFAULT_CATEGORY.id]: DEFAULT_CATEGORY} as CategoryList);
 
 // Grouping type exports
 export type {
@@ -48,7 +52,7 @@ export const useListStore = defineStore('list', () => {
   const itemList = useStorage('itemList', {} as ItemList);
   const readyList = useStorage('readyList', {} as ListGroup);
   const completeList = useStorage('completeList', {} as ListGroup);
-  const categoryList = useStorage('categoryList', { [DEFAULT_CATEGORY.id]: DEFAULT_CATEGORY} as CategoryList);
+  const categoryList = useStorage('categoryList', DEFAULT_LIST);
 
   const addTerm = (term: string, selectedCategory: string) => {
     // No empty list terms
