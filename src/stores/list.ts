@@ -26,7 +26,6 @@ interface Category {
   id: string;
   name: string;
 }
-// TODO: Be able to fill out category and attach to Items
 interface CategoryList {
   [id: string]: Category;
 }
@@ -34,10 +33,14 @@ export const DEFAULT_CATEGORY: Category = {
   id: '0000-0000-0000-0000-0000',
   name: 'No Category',
 }
-const DEFAULT_LIST = ['Pharmacy', 'Frozen', 'Household', 'Dairy', 'Bread'].reduce((acc, name) => {
+const STARTER_NAMES = ['Pharmacy', 'Frozen', 'Household', 'Dairy', 'Bread'];
+const DEFAULT_NAMES = {} as TermList;
+const DEFAULT_LIST = { [DEFAULT_CATEGORY.id]: DEFAULT_CATEGORY} as CategoryList;
+STARTER_NAMES.forEach((name) => {
   const id = crypto.randomUUID();
-  return { ...acc, [id]: { id, name }};
-}, { [DEFAULT_CATEGORY.id]: DEFAULT_CATEGORY} as CategoryList);
+  DEFAULT_LIST[id] = { id, name };
+  DEFAULT_NAMES[name] = id;
+})
 
 // Grouping type exports
 export type {
@@ -56,6 +59,7 @@ export const useListStore = defineStore('list', () => {
   const readyList = useStorage('readyList', {} as CategoryItems);
   const completeList = useStorage('completeList', {} as CategoryItems);
   const categoryList = useStorage('categoryList', DEFAULT_LIST);
+  const categoryTerms = useStorage('categoryTerms', DEFAULT_NAMES); // set
 
   const addTerm = (term: string, selectedCategory: string) => {
     // No empty list terms
@@ -93,10 +97,13 @@ export const useListStore = defineStore('list', () => {
   }
 
   const addCategory = (name: string) => {
+    // Currently only has a name, so only check if the name is already there
+    if (!name || categoryTerms.value[name]) return;
     const id = crypto.randomUUID();
     categoryList.value[id] = {
       id, name
     };
+    categoryTerms.value[name] = id;
   }
 
   const deleteCategory = (categoryID: string, keepItems: boolean = false) => {
