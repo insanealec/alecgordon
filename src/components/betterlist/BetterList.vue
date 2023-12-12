@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useListStore, DEFAULT_CATEGORY } from '@/stores/list';
-import ListItem from './ListItem.vue';
+import ListColumn from './ListColumn.vue';
 
 const store = useListStore();
 let term = ref('');
@@ -32,16 +32,10 @@ const addTerm = () => {
 </div>
 <div class="flex w-full h-auto">
   <div class="flex flex-col w-1/2 border-r pr-1">
-    <h3 class="w-full">List</h3>
-    <div class="w-full flex flex-col">
-      <ListItem :categories="store.readyList" :add-func="store.addComplete" :checked="false" />
-    </div>
+    <ListColumn title="List" :categories="store.readyList" :add-func="store.addComplete" :checked="false" />
   </div>
   <div class="flex flex-col w-1/2 border-l pl-1">
-    <h3 class="w-full">Complete</h3>
-    <div class="w-full flex flex-col">
-      <ListItem :categories="store.completeList" :add-func="store.addReady" :checked="true" />
-    </div>
+    <ListColumn title="Complete" :categories="store.completeList" :add-func="store.addReady" :checked="true" />
   </div>
 </div>
 </template>
