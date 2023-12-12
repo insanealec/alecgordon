@@ -86,11 +86,17 @@ export const useListStore = defineStore('list', () => {
   }
 
   const addComplete = (categoryID: string, key: string) => {
-    console.log(completeList.value, completeList.value[categoryID])
     completeList.value[categoryID] = {
       ...(completeList.value[categoryID] ?? {}), [key]: readyList.value[categoryID][key],
     };
     delete readyList.value[categoryID][key];
+  }
+
+  const addCategory = (name: string) => {
+    const id = crypto.randomUUID();
+    categoryList.value[id] = {
+      id, name
+    };
   }
 
   const deleteCategory = (categoryID: string, keepItems: boolean = false) => {
@@ -119,6 +125,7 @@ export const useListStore = defineStore('list', () => {
     addTerm,
     addReady,
     addComplete,
+    addCategory,
     deleteCategory,
     updateCategory,
   };
