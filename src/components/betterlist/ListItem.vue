@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useListStore, type ListGroup } from '@/stores/list';
+import { useListStore, type CategoryItems } from '@/stores/list';
 
 defineProps<{
-  list: ListGroup;
+  categories: CategoryItems;
   addFunc: Function;
   checked: boolean;
 }>();
@@ -12,10 +12,15 @@ const store = useListStore();
 </script>
 
 <template>
-<label class="flex flex-row items-center" v-for="(itemID, key) in list" :key="key">
-  <input class="item" type="checkbox" :checked="checked" :name="store.itemList[itemID].name" :id="itemID" @change.prevent="addFunc(key.toString())" />
-  {{ store.itemList[itemID].name }}
-</label>
+<div v-for="(group, catID) in categories" :key="catID">
+  <template v-if="Object.keys(group).length > 0">
+    {{ store.categoryList[catID].name }}
+    <label class="flex flex-row items-center" v-for="(itemID, key) in group" :key="key">
+      <input class="item" type="checkbox" :checked="checked" :name="store.itemList[itemID].name" :id="itemID" @change.prevent="addFunc(catID, key.toString())" />
+      {{ store.itemList[itemID].name }}
+    </label>
+  </template>
+</div>
 </template>
 
 <style lang="scss" scoped>

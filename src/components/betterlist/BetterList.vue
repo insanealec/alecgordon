@@ -34,13 +34,13 @@ const addTerm = () => {
   <div class="flex flex-col w-1/2 border-r pr-1">
     <h3 class="w-full">List</h3>
     <div class="w-full flex flex-col">
-      <ListItem :list="store.readyList" :add-func="store.addComplete" :checked="false" />
+      <ListItem :categories="store.readyList" :add-func="store.addComplete" :checked="false" />
     </div>
   </div>
   <div class="flex flex-col w-1/2 border-l pl-1">
     <h3 class="w-full">Complete</h3>
     <div class="w-full flex flex-col">
-      <ListItem :list="store.completeList" :add-func="store.addReady" :checked="true" />
+      <ListItem :categories="store.completeList" :add-func="store.addReady" :checked="true" />
     </div>
   </div>
 </div>
