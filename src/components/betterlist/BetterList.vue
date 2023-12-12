@@ -16,7 +16,7 @@ const addTerm = () => {
 
 <template>
 <div class="flex flex-col w-full">
-  <form class="form-grid" @submit.prevent="addTerm">
+  <form class="form-grid mb-2" @submit.prevent="addTerm">
     <label for="term" class="form-label1 text-sm font-medium text-gray-900 dark:text-white">Add item to list</label>
     <input type="text" list="terms" id="term" name="term" placeholder="Item" v-model.trim="term" class="form-input1" />
     <datalist id="terms">

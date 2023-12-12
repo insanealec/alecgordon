@@ -14,10 +14,10 @@ const addCategory = () => {
 
 <template>
 <div class="flex flex-col w-full">
-  <form class="form-grid" @submit.prevent="addCategory">
-    <label for="categoryName" class="form-label1 text-sm font-medium text-gray-900 dark:text-white">Add category</label>
-    <input type="text" id="categoryName" name="categoryName" placeholder="Category" v-model.trim="categoryName" class="form-input1" />
-    <button type="submit" class="form-button py-2 px-3 bg-cyan-500 text-white font-semibold">Add</button>
+  <form class="grid grid-flow-col grid-column-4 lg:grid-column-5 grid-rows-[1fr_2fr_2fr] md:grid-rows-[1fr_2fr] mb-2" @submit.prevent="addCategory">
+    <label class="col-span-4 md:col-span-3 text-sm font-medium text-gray-900 dark:text-white" for="categoryName">Add category</label>
+    <input class="col-span-4 md:col-span-3" type="text" id="categoryName" name="categoryName" placeholder="Category" v-model.trim="categoryName" />
+    <button class="col-span-4 md:col-span-1 md:row-span-2 py-2 px-3 bg-cyan-500 text-white font-semibold" type="submit">Add</button>
   </form>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
