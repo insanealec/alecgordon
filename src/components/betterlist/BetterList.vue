@@ -2,14 +2,19 @@
 import { ref } from 'vue';
 import { useListStore, DEFAULT_CATEGORY } from '@/stores/list';
 import ListColumn from './ListColumn.vue';
+import { useFocus, useToggle } from '@vueuse/core';
 
 const store = useListStore();
 let term = ref('');
 let selectedCategory = ref(DEFAULT_CATEGORY.id);
+const termEl = ref();
+const { focused } = useFocus(termEl);
+const toggleFocus = useToggle(focused);
 
 const addTerm = () => {
   store.addTerm(term.value, selectedCategory.value);
   term.value = '';
+  toggleFocus();
 }
 
 </script>
@@ -26,8 +31,8 @@ const addTerm = () => {
     <select id="selectedCategory" v-model="selectedCategory" class="form-input2 text-black p-2">
       <option v-for="(category, id) in store.categoryList" :value="id" :key="id">{{ category.name }}</option>
     </select>
-    <RouterLink to="/betterlist/categories" class="form-link-gear text-xs bg-indigo-600">Manage categories &#9881;</RouterLink>
     <button type="submit" class="form-button py-2 px-3 bg-cyan-500 text-white font-semibold">Add</button>
+    <RouterLink to="/betterlist/categories" class="form-link-gear text-xs bg-indigo-600">Manage categories &#9881;</RouterLink>
   </form>
 </div>
 <div class="flex w-full h-auto">
