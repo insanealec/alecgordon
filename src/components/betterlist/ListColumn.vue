@@ -18,7 +18,7 @@ const store = useListStore();
   <div v-for="(group, catID) in categories" :key="catID">
     <template v-if="Object.keys(group).length > 0">
       {{ store.categoryList[catID].name }}
-      <label class="flex flex-row items-center" v-for="(itemID, key) in group" :key="key">
+      <label class="flex flex-row items-center list-item-label" v-for="(itemID, key) in group" :key="key">
         <input class="item" type="checkbox" :checked="checked" :name="store.itemList[itemID].name" :id="itemID" @change.prevent="addFunc(catID, key.toString())" />
         {{ store.itemList[itemID].name }}
       </label>
