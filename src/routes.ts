@@ -1,4 +1,5 @@
 import AboutMe from '@/components/AboutMe.vue';
+import WorkExperience from './components/WorkExperience.vue';
 import IbottaExperience from '@/components/IbottaExperience.vue';
 import TheMcAlearGroup from './components/TheMcAlearGroup.vue';
 import CardStandardization from './components/projects/CardStandardization.vue';
@@ -10,6 +11,7 @@ import CategoryManager from './components/betterlist/CategoryManager.vue';
 
 export default [
   { name: 'home', path: '/', component: AboutMe },
+  { name: 'experiences', path: '/experiences', component: WorkExperience },
   { name: 'ibotta', path: '/ibotta', component: IbottaExperience },
   { name: 'mcalear', path: '/the-mcalear-group', component: TheMcAlearGroup },
   // Projects: will just be top-level

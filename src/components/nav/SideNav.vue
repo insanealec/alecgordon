@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import WorkExperience from '../WorkExperience.vue';
 import ThemeToggle from './ThemeToggle.vue';
 </script>
@@ -38,4 +38,4 @@ import ThemeToggle from './ThemeToggle.vue';
 </template>
 
 <style scoped>
-</style>
+</style> -->
