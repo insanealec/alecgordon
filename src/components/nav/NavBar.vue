@@ -11,6 +11,12 @@ import ThemeToggle from './ThemeToggle.vue';
       </div>
       <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
         <li><RouterLink :to="{ name: 'experiences' }">Experiences</RouterLink></li>
+        <li>
+          <summary>Side-projects</summary>
+          <ul class="p-2">
+            <li><RouterLink to="/betterlist">BetterList</RouterLink></li>
+          </ul>
+        </li>
         <li><a href="https://github.com/insanealec" class="gap-0" target="_blank">Github <span class="text-sm">&#128279;</span></a></li>
       </ul>
     </div>
@@ -19,6 +25,14 @@ import ThemeToggle from './ThemeToggle.vue';
   <div class="navbar-center hidden lg:flex">
     <ul class="menu menu-horizontal px-1">
       <li><RouterLink :to="{ name: 'experiences' }">Experiences</RouterLink></li>
+      <li>
+        <details>
+          <summary>Side-projects</summary>
+          <ul class="p-2 z-30">
+            <li><RouterLink to="/betterlist">BetterList</RouterLink></li>
+          </ul>
+        </details>
+      </li>
       <li><a href="https://github.com/insanealec" class="gap-0" target="_blank">Github <span class="text-sm">&#128279;</span></a></li>
     </ul>
   </div>
