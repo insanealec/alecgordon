@@ -7,16 +7,10 @@ import NavBar from './components/nav/NavBar.vue'
     <NavBar />
   </header>
 
-  <main class="py-8 px-2">
+  <main class="container mt-4 mx-auto px-1 sm:px-0 md:px-2 lg:px-8">
     <RouterView></RouterView>
   </main>
 </template>
 
 <style scoped>
-/* header, main {
-  @media (max-width: 1024px) {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-} */
 </style>
