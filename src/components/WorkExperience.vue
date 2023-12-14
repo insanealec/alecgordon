@@ -8,19 +8,6 @@ import TimelineCheck from '@/assets/svgs/TimelineCheck.vue';
     <div class="timeline-middle">
       <TimelineCheck />
     </div>
-    <div class="timeline-end mb-10">
-      <time class="font-mono italic">Now</time>
-      <!-- <div class="text-lg font-black">Current</div> -->
-      <p class="paragraph">
-        Worrking on side-projects and looking for the next great team that'll have me.
-      </p>
-    </div>
-    <hr/>
-  </li>
-  <li>
-    <div class="timeline-middle">
-      <TimelineCheck />
-    </div>
     <div class="timeline-start md:text-end mb-10">
       <time class="font-mono italic">2021&mdash;2023</time>
       <div class="text-lg font-black">Ibotta</div>
@@ -46,6 +33,15 @@ import TimelineCheck from '@/assets/svgs/TimelineCheck.vue';
         We also migrated from vue-router to Nuxt intending to use SSR to help some of the slow initial loads for the site.
         Using Figma, we were able to inspect the design with a lot more detail so we could port it to SCSS easier.
       </p>
+    </div>
+    <div class="timeline-end mb-10">
+      <h4 class=" italic">Projects</h4>
+
+      <ul class="list-disc list-inside">
+        <li><RouterLink to="/card-standardization">Card Standardization</RouterLink></li>
+        <li><RouterLink to="/pagination">Pagination</RouterLink></li>
+        <li><RouterLink to="/misc">Miscellaneous</RouterLink></li>
+      </ul>
     </div>
     <hr/>
   </li>
