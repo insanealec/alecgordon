@@ -10,7 +10,7 @@ import TimelineCheck from '@/assets/svgs/TimelineCheck.vue';
     </div>
     <div class="timeline-start md:text-end mb-10">
       <time class="font-mono italic">2021&mdash;2023</time>
-      <div class="text-lg font-black">Ibotta</div>
+      <div class="text-lg font-bold">Ibotta</div>
       <p class="paragraph">
         During my time as a Senior Fullstack Engineer at <a href="https://ibotta.com/home">Ibotta</a>, I led various projects aimed at enhancing the e-commerce web app.
         Notable achievements include improving accessibility, navigation improvements, and integrating GraphQL APIs.
@@ -52,7 +52,7 @@ import TimelineCheck from '@/assets/svgs/TimelineCheck.vue';
     </div>
     <div class="timeline-end mb-10">
       <time class="font-mono italic">2015&mdash;2021</time>
-      <div class="text-lg font-black">The McAlear Group</div>
+      <div class="text-lg font-bold">The McAlear Group</div>
       <p class="paragraph">
         I dedicated six years of my career to serving as a Software Developer at The McAlear Group.
         In this role, I developed custom e-commerce applications, managed multiple internal REST APIs, and diligently maintained numerous git repositories.
