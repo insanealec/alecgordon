@@ -8,6 +8,19 @@ import TimelineCheck from '@/assets/svgs/TimelineCheck.vue';
     <div class="timeline-middle">
       <TimelineCheck />
     </div>
+    <div class="timeline-end mb-10">
+      <time class="font-mono italic">Now</time>
+      <!-- <div class="text-lg font-black">Current</div> -->
+      <p class="paragraph">
+        Worrking on side-projects and looking for the next great team that'll have me.
+      </p>
+    </div>
+    <hr/>
+  </li>
+  <li>
+    <div class="timeline-middle">
+      <TimelineCheck />
+    </div>
     <div class="timeline-start md:text-end mb-10">
       <time class="font-mono italic">2021&mdash;2023</time>
       <div class="text-lg font-black">Ibotta</div>
