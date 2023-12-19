@@ -30,6 +30,7 @@ import ThemeToggle from './ThemeToggle.vue';
           <summary>Side-projects</summary>
           <ul class="p-2 z-30 bg-indigo-200 dark:bg-slate-800">
             <li><RouterLink to="/betterlist">BetterList</RouterLink></li>
+            <li><RouterLink to="/delivery">Delivery Optimization</RouterLink></li>
           </ul>
         </details>
       </li>
