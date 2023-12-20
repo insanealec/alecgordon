@@ -27,7 +27,8 @@ const init = () => {
   map.value = new mapboxgl.Map({
     container: mapBox.value,
     // Is there a way to toggle only the style when darkmode changes without reinstantiating the map?
-    style: `mapbox://styles/mapbox/navigation-${ isDark.value ? 'night' : 'day'}-v1`,
+    style: `mapbox://styles/mapbox/navigation-${ isDark.value ? 'night' : 'day' }-v1`,
+    // long,lat
     center: [-71.224518, 42.213995],
     zoom: 9,
   });
