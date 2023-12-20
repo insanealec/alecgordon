@@ -3,7 +3,6 @@ import { ref } from 'vue';
 import { useDark, useToggle } from '@vueuse/core';
 import mapboxgl from 'mapbox-gl';
 
-const isDark = useDark();
 const isLocked = ref(false);
 const toggleLock = useToggle(isLocked);
 
@@ -27,7 +26,7 @@ const init = () => {
   map.value = new mapboxgl.Map({
     container: mapBox.value,
     // Is there a way to toggle only the style when darkmode changes without reinstantiating the map?
-    style: `mapbox://styles/mapbox/navigation-${ isDark.value ? 'night' : 'day' }-v1`,
+    style: `mapbox://styles/mapbox/navigation-${ useDark().value ? 'night' : 'day' }-v1`,
     // long,lat
     center: [-71.224518, 42.213995],
     zoom: 9,
