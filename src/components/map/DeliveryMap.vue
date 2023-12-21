@@ -2,6 +2,7 @@
 import { ref, computed, watch } from 'vue';
 import { useDark, useToggle } from '@vueuse/core';
 import mapboxgl from 'mapbox-gl';
+import 'mapbox-gl/dist/mapbox-gl.css'
 
 const isLocked = ref(false);
 const toggleLock = useToggle(isLocked);
@@ -43,6 +44,7 @@ const init = () => {
     zoom: 9,
   });
 }
+
 </script>
 
 <template>
@@ -53,7 +55,17 @@ const init = () => {
   </div>
   <button type="submit" class="whitespace-nowrap py-2 px-3 bg-cyan-500 text-white font-semibold">{{ isLocked ? 'Clear' : 'Initialize' }} Map</button>
 </form>
-<div ref="mapBox" class="map-box flex flex-col min-h-screen max-w-screen">
-  <div v-if="!isLocked" class="skeleton flex-grow"></div>
-</div>
+<div ref="mapBox" class="map-box flex flex-col min-h-screen max-w-screen"></div>
+<!-- <div v-if="!isLocked" class="skeleton flex-grow"></div> -->
 </template>
+
+<style lang="scss" scoped>
+.mapboxgl-canvas {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+</style>
