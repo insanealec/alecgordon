@@ -53,5 +53,7 @@ const init = () => {
   </div>
   <button type="submit" class="whitespace-nowrap py-2 px-3 bg-cyan-500 text-white font-semibold">{{ isLocked ? 'Clear' : 'Initialize' }} Map</button>
 </form>
-<div ref="mapBox" class="map-box flex flex-col min-h-screen max-w-screen"></div>
+<div ref="mapBox" class="map-box flex flex-col min-h-screen max-w-screen">
+  <div v-if="!isLocked" class="skeleton flex-grow"></div>
+</div>
 </template>
