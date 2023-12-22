@@ -2,7 +2,6 @@ import { defineStore } from 'pinia';
 import { ref, computed, watch } from 'vue';
 import { useDark } from '@vueuse/core';
 import mapboxgl from 'mapbox-gl';
-import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 
 interface Coordinates {
   lng: number;
@@ -13,18 +12,32 @@ interface Place {
   name: string;
   coords: Coordinates;
 }
+type MapboxCoords = { '0': number, '1': number};
+
+export type {
+  Coordinates,
+  Place,
+  MapboxCoords,
+}
 
 // Convert from mapbox lng,lat arr/obj to one I want to work with
-const toCoords = (mapCoord: { '0': number, '1': number}): Coordinates => {
+const toCoords = (mapCoord: MapboxCoords): Coordinates => {
   return { lng: mapCoord['0'], lat: mapCoord['1'] };
+}
+const fromCoords = (coords: Coordinates): MapboxCoords => {
+  return { '0': coords.lng, '1': coords.lat };
+}
+
+export {
+  toCoords,
+  fromCoords,
 }
 
 export const useMapStore = defineStore('map', () => {
-  const currentPlace = ref({} as Place);
   const accessToken = ref('');
+  const currentPlace = ref({} as Place);
   const map = ref();
   const mapBox = ref();
-  const geocoder = ref();
 
   const isDark = useDark();
   const mapStyle = computed(() => `mapbox://styles/mapbox/navigation-${ isDark.value ? 'night' : 'day' }-v1`);
@@ -48,7 +61,6 @@ export const useMapStore = defineStore('map', () => {
       center: [-83.653824, 41.562829],
       zoom: 9,
     });
-    addGeocoder();
   }
 
   const destroy = () => {
@@ -56,33 +68,13 @@ export const useMapStore = defineStore('map', () => {
     map.value = null;
   }
 
-  const addGeocoder = () => {
-    geocoder.value = new MapboxGeocoder({
-      accessToken: accessToken.value,
-      mapboxgl: mapboxgl,
-    });
-    geocoder.value.on('result', (e: any) => {
-      const { center, place_name } = e.result;
-      currentPlace.value = {
-        name: place_name,
-        coords: toCoords(center),
-      };
-      // TODO: Add a prompt for if this address should be added to the list
-      // Then place a permanent marker, clear the geocoder marker, and prepare address list
-      console.log(currentPlace.value);
-    });
-    map.value.addControl(geocoder.value);
-  }
-
   return {
     currentPlace,
     accessToken,
     map,
     mapBox,
-    geocoder,
     init,
     destroy,
-    addGeocoder,
   };
 });
 
