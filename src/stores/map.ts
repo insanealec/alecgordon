@@ -63,13 +63,13 @@ export const useMapStore = defineStore('map', () => {
     });
     geocoder.value.on('result', (e: any) => {
       const { center, place_name } = e.result;
-      const currentPlace: Place = {
+      currentPlace.value = {
         name: place_name,
         coords: toCoords(center),
       };
       // TODO: Add a prompt for if this address should be added to the list
       // Then place a permanent marker, clear the geocoder marker, and prepare address list
-      console.log(currentPlace);
+      console.log(currentPlace.value);
     });
     map.value.addControl(geocoder.value);
   }
