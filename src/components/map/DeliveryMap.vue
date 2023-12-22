@@ -2,7 +2,22 @@
 import { ref, computed, watch } from 'vue';
 import { useDark, useToggle } from '@vueuse/core';
 import mapboxgl from 'mapbox-gl';
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import 'mapbox-gl/dist/mapbox-gl.css'
+import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
+
+interface Coordinates {
+  lng: number;
+  lat: number;
+}
+const toCoords = (mapCoord: { '0': number, '1': number}): Coordinates => {
+  return { lng: mapCoord['0'], lat: mapCoord['1'] };
+}
+
+interface Place {
+  name: string;
+  coords: Coordinates;
+}
 
 const isLocked = ref(false);
 const toggleLock = useToggle(isLocked);
@@ -22,6 +37,7 @@ watch(isDark, () => {
 const accessToken = ref('');
 const map = ref();
 const mapBox = ref();
+const geocoder = ref();
 
 const submit = () => {
   if (!accessToken.value) return;
@@ -39,10 +55,27 @@ const init = () => {
   map.value = new mapboxgl.Map({
     container: mapBox.value,
     style: mapStyle.value,
-    // long,lat
+    // lng,lat
     center: [-71.224518, 42.213995],
     zoom: 9,
   });
+  addGeocoder();
+}
+
+const addGeocoder = () => {
+  geocoder.value = new MapboxGeocoder({
+    accessToken: accessToken.value,
+    mapboxgl: mapboxgl,
+  });
+  geocoder.value.on('result', (e: any) => {
+    const { center, place_name } = e.result;
+    const currentPlace: Place = {
+      name: place_name,
+      coords: toCoords(center),
+    };
+    console.log(currentPlace);
+  });
+  map.value.addControl(geocoder.value);
 }
 
 </script>
@@ -59,7 +92,7 @@ const init = () => {
 <!-- <div v-if="!isLocked" class="skeleton flex-grow"></div> -->
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .mapboxgl-canvas {
   position: absolute;
   top: 0;
@@ -67,5 +100,13 @@ const init = () => {
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+.mapboxgl-ctrl-geocoder {
+  &--input {
+    &:focus {
+      @apply text-gray-900 dark:text-white;
+    }
+  }
 }
 </style>
