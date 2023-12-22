@@ -17,7 +17,7 @@ import ThemeToggle from './ThemeToggle.vue';
             <li><RouterLink to="/betterlist">BetterList</RouterLink></li>
           </ul>
         </li>
-        <li><a href="https://github.com/insanealec" class="gap-0" target="_blank">Github <span class="text-sm">&#128279;</span></a></li>
+        <li><a href="https://github.com/insanealec/alecgordon" class="gap-0" target="_blank">Github <span class="text-sm">&#128279;</span></a></li>
       </ul>
     </div>
     <RouterLink :to="{ name: 'home' }" class="btn btn-ghost text-xl">Alec Gordon</RouterLink>
@@ -30,10 +30,11 @@ import ThemeToggle from './ThemeToggle.vue';
           <summary>Side-projects</summary>
           <ul class="p-2 z-30 bg-indigo-200 dark:bg-slate-800">
             <li><RouterLink to="/betterlist">BetterList</RouterLink></li>
+            <li><RouterLink to="/delivery">Delivery Optimization</RouterLink></li>
           </ul>
         </details>
       </li>
-      <li><a href="https://github.com/insanealec" class="gap-0" target="_blank">Github <span class="text-sm">&#128279;</span></a></li>
+      <li><a href="https://github.com/insanealec/alecgordon" class="gap-0" target="_blank">Github <span class="text-sm">&#128279;</span></a></li>
     </ul>
   </div>
   <div class="navbar-end">

@@ -6,6 +6,7 @@ import MiscIbotta from './components/projects/MiscIbotta.vue';
 import BetterLayout from './components/betterlist/BetterLayout.vue';
 import BetterList from './components/betterlist/BetterList.vue';
 import CategoryManager from './components/betterlist/CategoryManager.vue';
+import DeliveryMap from './components/map/DeliveryMap.vue';
 
 export default [
   { name: 'home', path: '/', component: AboutMe },
@@ -30,6 +31,11 @@ export default [
         component: CategoryManager,
       },
     ],
+  },
+  {
+    name: 'delivery',
+    path: '/delivery',
+    component: DeliveryMap,
   },
 ];
 
