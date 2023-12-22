@@ -107,14 +107,18 @@ export const useListStore = defineStore('list', () => {
   }
 
   const deleteCategory = (categoryID: string, keepItems: boolean = false) => {
+    // Don't delete the default category
+    if (categoryID === DEFAULT_CATEGORY.id) return;
     if (keepItems) {
-      // Can I make this move to the default category recreate it if deleted, or make it protected?
+      // Move everything from the deleted category into the default
       readyList.value[DEFAULT_CATEGORY.id] = readyList.value[categoryID];
       completeList.value[DEFAULT_CATEGORY.id] = completeList.value[categoryID];
     }
     // Delete everything from the lists for this category
     delete readyList.value[categoryID];
     delete completeList.value[categoryID];
+    // Delete from the term list
+    delete categoryTerms.value[categoryList.value[categoryID].name];
     // Finally delete the category
     delete categoryList.value[categoryID];
   }

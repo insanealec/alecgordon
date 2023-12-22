@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { ref, nextTick } from 'vue';
+import { ref, computed, nextTick } from 'vue';
 import { useToggle, useFocus } from '@vueuse/core';
-import { useListStore, type Category } from '@/stores/list';
+import { useListStore, type Category, DEFAULT_CATEGORY } from '@/stores/list';
 
 const props = defineProps<{
   category: Category;
 }>();
+
+const isDefault = computed(() => props.category.id === DEFAULT_CATEGORY.id);
 
 const store = useListStore();
 const [isEditState, toggleEdit] = useToggle(false);
@@ -31,7 +33,7 @@ const save = () => {
 </script>
 
 <template>
-<div class="card bg-neutral text-neutral-content">
+<div v-if="!isDefault" class="card bg-neutral text-neutral-content">
   <div class="card-body items-center text-center">
     <h2 class="card-title">
       <button v-if="!isEditState" @click="toggle" class="btn btn-ghost">{{ category.name }}</button>
