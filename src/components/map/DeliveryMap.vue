@@ -34,6 +34,12 @@ const suggest = () => {
   search.suggest(biasCoords);
 }
 
+const retrieve = async (id: string) => {
+  let coords = await search.retrieve(id);
+  // TODO: Add Marker to map and add to list of Places in mapStore
+  console.log(coords, search.suggestions[id].address);
+}
+
 </script>
 
 <template>
@@ -53,6 +59,9 @@ const suggest = () => {
       <input v-model.trim="search.term" class="join-item" type="text" id="address" name="address" placeholder="Address" />
       <button type="submit" class="btn join-item whitespace-nowrap py-2 px-3 bg-indigo-500 text-white font-semibold">Search</button>
     </form>
+    <div class="suggestions flex flex-col">
+      <button v-for="(suggestion, id) in search.suggestions" :key="id" class="btn w-full" @click="retrieve(id.toString())">{{ suggestion.address }}</button>
+    </div>
   </div>
 
 </div>
