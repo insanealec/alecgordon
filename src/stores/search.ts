@@ -52,6 +52,7 @@ export const useSearchStore = defineStore('search', () => {
     accessToken,
     term,
     query,
+    suggestions,
     suggest,
     retrieve,
   }

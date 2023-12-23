@@ -10,13 +10,21 @@ const isLocked = ref(false);
 const toggleLock = useToggle(isLocked);
 const lockStyle = computed(() => isLocked.value ? 'pointer-events-none select-none blur-sm' : '');
 
+const currentTab = ref(0);
+
 const search = useSearchStore();
 const map = useMapStore();
 const mapBox = ref();
 
 const submit = () => {
   if (!map.accessToken) return;
-  isLocked.value ? map.destroy() : map.init(mapBox);
+  if (isLocked.value) {
+    map.destroy();
+    currentTab.value = 0;
+  } else {
+    map.init(mapBox);
+    currentTab.value = 1;
+  }
   search.accessToken = map.accessToken;
   toggleLock();
 }
@@ -29,18 +37,27 @@ const suggest = () => {
 </script>
 
 <template>
-<form class="flex flex-row mb-1" @submit.prevent="submit">
-  <div class="flex flex-col w-full">
-    <label for="token" class="text-sm font-medium text-gray-900 dark:text-white">MapBox API Token</label>
-    <input type="text" id="token" name="token" placeholder="Token" :class="lockStyle" v-model.trim="map.accessToken" :disabled="isLocked" />
+<div role="tablist" class="tabs tabs-lifted">
+
+  <input v-model="currentTab" value="0" type="radio" name="mapTabs" role="tab" class="tab h-16 sm:h-8" aria-label="Mapbox Token Entry" />
+  <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+    <form class="join w-full mb-1" @submit.prevent="submit">
+      <input v-model.trim="map.accessToken" :disabled="isLocked" :class="lockStyle" class="join-item" type="text" id="token" name="token" placeholder="Mapbox API Token" />
+      <button type="submit" class="btn join-item whitespace-nowrap py-2 px-3 bg-cyan-500 text-white font-semibold">{{ isLocked ? 'Clear' : 'Initialize' }} Map</button>
+    </form>
   </div>
-  <button type="submit" class="whitespace-nowrap py-2 px-3 bg-cyan-500 text-white font-semibold">{{ isLocked ? 'Clear' : 'Initialize' }} Map</button>
-</form>
-<form class="flex flex-row mb-1" @submit.prevent="suggest">
-  <input type="text" id="address" name="address" placeholder="Address" v-model.trim="search.term" />
-</form>
+
+  <input v-model="currentTab" value="1" :disabled="!isLocked" type="radio" name="mapTabs" role="tab" class="tab h-16 sm:h-8" aria-label="Address Search" />
+  <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+    <form class="join w-full mb-1" @submit.prevent="suggest">
+      <input v-model.trim="search.term" class="join-item" type="text" id="address" name="address" placeholder="Address" />
+      <button type="submit" class="btn join-item whitespace-nowrap py-2 px-3 bg-indigo-500 text-white font-semibold">Search</button>
+    </form>
+  </div>
+
+</div>
+
 <div ref="mapBox" class="map-box flex flex-col min-h-screen max-w-screen"></div>
-<!-- <div v-if="!isLocked" class="skeleton flex-grow"></div> -->
 </template>
 
 <style lang="scss">
