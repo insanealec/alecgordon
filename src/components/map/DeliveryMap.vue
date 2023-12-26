@@ -13,31 +13,39 @@ const lockStyle = computed(() => isLocked.value ? 'pointer-events-none select-no
 const currentTab = ref(0);
 
 const search = useSearchStore();
-const map = useMapStore();
+const mapStore = useMapStore();
 const mapBox = ref();
 
 const submit = () => {
-  if (!map.accessToken) return;
+  if (!mapStore.accessToken) return;
   if (isLocked.value) {
-    map.destroy();
+    mapStore.destroy();
     currentTab.value = 0;
   } else {
-    map.init(mapBox);
+    mapStore.init(mapBox);
     currentTab.value = 1;
   }
-  search.accessToken = map.accessToken;
+  search.accessToken = mapStore.accessToken;
   toggleLock();
 }
 
 const suggest = () => {
-  const biasCoords: Coordinates = map.map?.transform?.center ?? undefined;
-  search.suggest(biasCoords);
+  try {
+    const biasCoords: Coordinates = mapStore.map?.transform?.center ?? undefined;
+    search.suggest(biasCoords);
+  } catch (e) {
+    console.log('Could not find suggestions based on search term.');
+  }
 }
 
 const retrieve = async (id: string) => {
-  let coords = await search.retrieve(id);
-  // TODO: Add Marker to map and add to list of Places in mapStore
-  console.log(coords, search.suggestions[id].address);
+  try {
+    let coords = await search.retrieve(id);
+    // Add Marker to map and add to list of Places in mapStore
+    mapStore.setPlace(search.suggestions[id].address, coords);
+  } catch (e) {
+    console.log('Could not retrieve coordinates for selected address.');
+  }
 }
 
 </script>
@@ -48,7 +56,7 @@ const retrieve = async (id: string) => {
   <input v-model="currentTab" value="0" type="radio" name="mapTabs" role="tab" class="tab h-16 sm:h-8" aria-label="Mapbox Token Entry" />
   <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
     <form class="join w-full mb-1" @submit.prevent="submit">
-      <input v-model.trim="map.accessToken" :disabled="isLocked" :class="lockStyle" class="join-item" type="text" id="token" name="token" placeholder="Mapbox API Token" />
+      <input v-model.trim="mapStore.accessToken" :disabled="isLocked" :class="lockStyle" class="join-item" type="text" id="token" name="token" placeholder="Mapbox API Token" />
       <button type="submit" class="btn join-item whitespace-nowrap py-2 px-3 bg-cyan-500 text-white font-semibold">{{ isLocked ? 'Clear' : 'Initialize' }} Map</button>
     </form>
   </div>
@@ -59,8 +67,8 @@ const retrieve = async (id: string) => {
       <input v-model.trim="search.term" class="join-item" type="text" id="address" name="address" placeholder="Address" />
       <button type="submit" class="btn join-item whitespace-nowrap py-2 px-3 bg-indigo-500 text-white font-semibold">Search</button>
     </form>
-    <div class="suggestions flex flex-col">
-      <button v-for="(suggestion, id) in search.suggestions" :key="id" class="btn w-full" @click="retrieve(id.toString())">{{ suggestion.address }}</button>
+    <div v-if="search.hasSuggestions" class="suggestions join join-vertical flex border border-indigo-500">
+      <button v-for="(suggestion, id) in search.suggestions" :key="id" class="btn join-item w-full dark:hover:bg-gray-700 dark:hover:text-white" @click="retrieve(id.toString())">{{ suggestion.address }}</button>
     </div>
   </div>
 
