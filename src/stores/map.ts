@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { ref, computed, watch } from 'vue';
 import { useDark } from '@vueuse/core';
-import mapboxgl from 'mapbox-gl';
+import mapboxgl, { Map, Marker } from 'mapbox-gl';
 
 interface Coordinates {
   lng: number;
@@ -11,6 +11,8 @@ interface Place {
   // Searched address
   name: string;
   coords: Coordinates;
+  // Marker on map
+  marker?: Marker,
 }
 type MapboxCoords = { '0': number, '1': number};
 
@@ -36,6 +38,9 @@ export {
 export const useMapStore = defineStore('map', () => {
   const accessToken = ref('');
   const currentPlace = ref({} as Place);
+  // Places added to the map and kept after search for use in delivery
+  // TODO: array or map?
+  // const places = ref([] as Place[]);
   const map = ref();
   const mapBox = ref();
 
@@ -54,7 +59,7 @@ export const useMapStore = defineStore('map', () => {
     // Copy mapbox template ref from component
     mapBox.value = mb.value;
     mapboxgl.accessToken = accessToken.value;
-    map.value = new mapboxgl.Map({
+    map.value = new Map({
       container: mapBox.value,
       style: mapStyle.value,
       // lng,lat
@@ -68,6 +73,21 @@ export const useMapStore = defineStore('map', () => {
     map.value = null;
   }
 
+  const setPlace = (address: string, coords: Coordinates) => {
+    // Clear old marker
+    if (currentPlace.value.marker) {
+      currentPlace.value.marker.remove();
+    }
+    const marker = new Marker({
+      color: 'red',
+    }).setLngLat(coords).addTo(map.value);
+    currentPlace.value = {
+      name: address,
+      coords,
+      marker,
+    };
+  }
+
   return {
     currentPlace,
     accessToken,
@@ -75,6 +95,7 @@ export const useMapStore = defineStore('map', () => {
     mapBox,
     init,
     destroy,
+    setPlace,
   };
 });
 
