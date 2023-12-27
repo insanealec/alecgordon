@@ -54,7 +54,7 @@ const retrieve = async (id: string) => {
 <div role="tablist" class="tabs tabs-lifted">
 
   <input v-model="currentTab" value="0" type="radio" name="mapTabs" role="tab" class="tab h-16 sm:h-8" aria-label="Mapbox Token Entry" />
-  <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+  <div role="tabpanel" class="tab-content bg-neutral border-base-300 rounded-box p-6">
     <form class="join w-full mb-1" @submit.prevent="submit">
       <input v-model.trim="mapStore.accessToken" :disabled="isLocked" :class="lockStyle" class="join-item" type="text" id="token" name="token" placeholder="Mapbox API Token" />
       <button type="submit" class="btn join-item whitespace-nowrap py-2 px-3 bg-cyan-500 text-white font-semibold">{{ isLocked ? 'Clear' : 'Initialize' }} Map</button>
@@ -62,14 +62,14 @@ const retrieve = async (id: string) => {
   </div>
 
   <input v-model="currentTab" value="1" :disabled="!isLocked" type="radio" name="mapTabs" role="tab" class="tab h-16 sm:h-8" aria-label="Address Search" />
-  <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+  <div role="tabpanel" class="tab-content bg-neutral border-base-300 rounded-box p-6">
     <form class="join w-full mb-1" @submit.prevent="suggest">
       <input v-model.trim="search.term" class="join-item" type="text" id="address" name="address" placeholder="Address" />
-      <button type="submit" class="btn join-item whitespace-nowrap py-2 px-3 bg-indigo-500 text-white font-semibold">Search</button>
+      <button type="submit" class="btn join-item whitespace-nowrap py-2 px-3 bg-secondary text-white font-semibold">Search</button>
     </form>
-    <div v-if="search.hasSuggestions" class="suggestions join join-vertical flex border border-indigo-500">
-      <div v-for="(suggestion, id) in search.suggestions" :key="id" class="flex flex-row justify-between items-center join-item join w-full dark:hover:bg-gray-700 dark:hover:text-white">
-        <span class="join-item paragraph">{{ suggestion.address }}</span>
+    <div v-if="search.hasSuggestions" class="suggestions join join-vertical flex border border-secondary">
+      <div v-for="(suggestion, id) in search.suggestions" :key="id" class="flex flex-row justify-between items-center join-item join w-full hover:bg-info-content">
+        <span class="join-item indent">{{ suggestion.address }}</span>
         <button class="btn btn-primary join-item" @click="retrieve(id.toString())">Show</button>
       </div>
     </div>
@@ -88,5 +88,9 @@ const retrieve = async (id: string) => {
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+.tab {
+  --tab-bg: oklch(var(--n));
 }
 </style>

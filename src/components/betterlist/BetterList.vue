@@ -22,17 +22,17 @@ const addTerm = () => {
 <template>
 <div class="flex flex-col w-full">
   <form class="form-grid mb-2" @submit.prevent="addTerm">
-    <label for="term" class="form-label1 text-sm font-medium text-gray-900 dark:text-white">Add item to list</label>
+    <label for="term" class="form-label1 text-sm font-medium">Add item to list</label>
     <input type="text" list="terms" id="term" name="term" placeholder="Item" v-model.trim="term" class="form-input1" />
     <datalist id="terms">
       <option v-for="(id, term) in store.termList" :key="id" :value="term">{{ term }}</option>
     </datalist>
-    <label for="selectedCategory" class="form-label2 text-sm font-medium text-gray-900 dark:text-white">Add to category</label>
-    <select id="selectedCategory" v-model="selectedCategory" class="form-input2 text-black p-2">
+    <label for="selectedCategory" class="form-label2 text-sm font-medium">Add to category</label>
+    <select id="selectedCategory" v-model="selectedCategory" class="form-input2 p-2">
       <option v-for="(category, id) in store.categoryList" :value="id" :key="id">{{ category.name }}</option>
     </select>
-    <button type="submit" class="form-button py-2 px-3 bg-cyan-500 text-white font-semibold">Add</button>
-    <RouterLink to="/betterlist/categories" class="form-link-gear text-xs bg-indigo-600">Manage categories &#9881;</RouterLink>
+    <button type="submit" class="form-button py-2 px-3 bg-primary text-white font-semibold">Add</button>
+    <RouterLink to="/betterlist/categories" class="form-link-gear text-xs bg-secondary">Manage categories &#9881;</RouterLink>
   </form>
 </div>
 <div class="flex w-full h-auto">
