@@ -68,7 +68,10 @@ const retrieve = async (id: string) => {
       <button type="submit" class="btn join-item whitespace-nowrap py-2 px-3 bg-indigo-500 text-white font-semibold">Search</button>
     </form>
     <div v-if="search.hasSuggestions" class="suggestions join join-vertical flex border border-indigo-500">
-      <button v-for="(suggestion, id) in search.suggestions" :key="id" class="btn join-item w-full dark:hover:bg-gray-700 dark:hover:text-white" @click="retrieve(id.toString())">{{ suggestion.address }}</button>
+      <div v-for="(suggestion, id) in search.suggestions" :key="id" class="flex flex-row justify-between items-center join-item join w-full dark:hover:bg-gray-700 dark:hover:text-white">
+        <span class="join-item paragraph">{{ suggestion.address }}</span>
+        <button class="btn btn-primary join-item" @click="retrieve(id.toString())">Show</button>
+      </div>
     </div>
   </div>
 
