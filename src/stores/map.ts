@@ -69,15 +69,21 @@ export const useMapStore = defineStore('map', () => {
   }
 
   const destroy = () => {
+    clearPlace();
     map.value.remove();
     map.value = null;
   }
 
-  const setPlace = (address: string, coords: Coordinates) => {
+  const clearPlace = () => {
     // Clear old marker
     if (currentPlace.value.marker) {
       currentPlace.value.marker.remove();
     }
+    currentPlace.value = {} as Place;
+  }
+
+  const setPlace = (address: string, coords: Coordinates) => {
+    clearPlace();
     const marker = new Marker({
       color: 'red',
     }).setLngLat(coords).addTo(map.value);
@@ -95,6 +101,7 @@ export const useMapStore = defineStore('map', () => {
     mapBox,
     init,
     destroy,
+    clearPlace,
     setPlace,
   };
 });
