@@ -14,10 +14,9 @@
     "vue": "^3.3.4"
   },
   "devDependencies": {
-    "@mapbox/mapbox-gl-geocoder": "^5.0.2",
     "@rushstack/eslint-patch": "^1.3.3",
     "@tsconfig/node18": "^18.2.2",
-    "@types/mapbox__mapbox-gl-geocoder": "^4.7.7",
+    "@types/lodash": "^4.14.202",
     "@types/mapbox-gl": "^2.7.19",
     "@types/node": "^18.19.2",
     "@vitejs/plugin-vue": "^4.4.0",
@@ -28,6 +27,7 @@
     "daisyui": "^4.4.19",
     "eslint": "^8.49.0",
     "eslint-plugin-vue": "^9.17.0",
+    "lodash": "^4.17.21",
     "mapbox-gl": "^3.0.1",
     "npm-run-all2": "^6.1.1",
     "pinia": "^2.1.7",

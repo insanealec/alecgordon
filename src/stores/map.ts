@@ -1,8 +1,7 @@
 import { defineStore } from 'pinia';
 import { ref, computed, watch } from 'vue';
 import { useDark } from '@vueuse/core';
-import mapboxgl from 'mapbox-gl';
-import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+import mapboxgl, { Map, Marker } from 'mapbox-gl';
 
 interface Coordinates {
   lng: number;
@@ -12,19 +11,38 @@ interface Place {
   // Searched address
   name: string;
   coords: Coordinates;
+  // Marker on map
+  marker?: Marker,
+}
+type MapboxCoords = { '0': number, '1': number};
+
+export type {
+  Coordinates,
+  Place,
+  MapboxCoords,
 }
 
 // Convert from mapbox lng,lat arr/obj to one I want to work with
-const toCoords = (mapCoord: { '0': number, '1': number}): Coordinates => {
+const toCoords = (mapCoord: MapboxCoords): Coordinates => {
   return { lng: mapCoord['0'], lat: mapCoord['1'] };
+}
+const fromCoords = (coords: Coordinates): MapboxCoords => {
+  return { '0': coords.lng, '1': coords.lat };
+}
+
+export {
+  toCoords,
+  fromCoords,
 }
 
 export const useMapStore = defineStore('map', () => {
-  const currentPlace = ref({} as Place);
   const accessToken = ref('');
+  const currentPlace = ref({} as Place);
+  // Places added to the map and kept after search for use in delivery
+  // TODO: array or map?
+  // const places = ref([] as Place[]);
   const map = ref();
   const mapBox = ref();
-  const geocoder = ref();
 
   const isDark = useDark();
   const mapStyle = computed(() => `mapbox://styles/mapbox/navigation-${ isDark.value ? 'night' : 'day' }-v1`);
@@ -41,37 +59,39 @@ export const useMapStore = defineStore('map', () => {
     // Copy mapbox template ref from component
     mapBox.value = mb.value;
     mapboxgl.accessToken = accessToken.value;
-    map.value = new mapboxgl.Map({
+    map.value = new Map({
       container: mapBox.value,
       style: mapStyle.value,
       // lng,lat
       center: [-83.653824, 41.562829],
       zoom: 9,
     });
-    addGeocoder();
   }
 
   const destroy = () => {
+    clearPlace();
     map.value.remove();
     map.value = null;
   }
 
-  const addGeocoder = () => {
-    geocoder.value = new MapboxGeocoder({
-      accessToken: accessToken.value,
-      mapboxgl: mapboxgl,
-    });
-    geocoder.value.on('result', (e: any) => {
-      const { center, place_name } = e.result;
-      const currentPlace: Place = {
-        name: place_name,
-        coords: toCoords(center),
-      };
-      // TODO: Add a prompt for if this address should be added to the list
-      // Then place a permanent marker, clear the geocoder marker, and prepare address list
-      console.log(currentPlace);
-    });
-    map.value.addControl(geocoder.value);
+  const clearPlace = () => {
+    // Clear old marker
+    if (currentPlace.value.marker) {
+      currentPlace.value.marker.remove();
+    }
+    currentPlace.value = {} as Place;
+  }
+
+  const setPlace = (address: string, coords: Coordinates) => {
+    clearPlace();
+    const marker = new Marker({
+      color: 'red',
+    }).setLngLat(coords).addTo(map.value);
+    currentPlace.value = {
+      name: address,
+      coords,
+      marker,
+    };
   }
 
   return {
@@ -79,10 +99,10 @@ export const useMapStore = defineStore('map', () => {
     accessToken,
     map,
     mapBox,
-    geocoder,
     init,
     destroy,
-    addGeocoder,
+    clearPlace,
+    setPlace,
   };
 });
 

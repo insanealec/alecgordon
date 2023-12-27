@@ -15,6 +15,7 @@ import ThemeToggle from './ThemeToggle.vue';
           <summary>Side-projects</summary>
           <ul class="p-2">
             <li><RouterLink to="/betterlist">BetterList</RouterLink></li>
+            <li><RouterLink to="/delivery">Delivery Optimization</RouterLink></li>
           </ul>
         </li>
         <li><a href="https://github.com/insanealec/alecgordon" class="gap-0" target="_blank">Github <span class="text-sm">&#128279;</span></a></li>
