@@ -42,9 +42,9 @@ const save = () => {
     <div class="card-actions justify-end">
       <template v-if="isEditState">
         <button @click="save" class="btn btn-primary">Save</button>
-        <button @click="toggle" class="btn">Cancel</button>
+        <button @click="toggle" class="btn btn-primary-content">Cancel</button>
       </template>
-      <button v-else @click="store.deleteCategory(category.id.toString())" class="btn">Delete</button>
+      <button v-else @click="store.deleteCategory(category.id.toString())" class="btn btn-primary-content">Delete</button>
     </div>
   </div>
 </div>
