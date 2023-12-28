@@ -2,7 +2,7 @@
 import { watch, computed } from 'vue';
 import { useStorage } from '@vueuse/core';
 
-const DEFAULT_THEME = 'night';
+const DEFAULT_THEME = 'business';
 const AVAILABLE_THEMES = [
   'dark',
   'synthwave',
