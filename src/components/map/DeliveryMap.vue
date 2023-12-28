@@ -42,10 +42,15 @@ const retrieve = async (id: string) => {
   try {
     let coords = await search.retrieve(id);
     // Add Marker to map and add to list of Places in mapStore
-    mapStore.setPlace(search.suggestions[id].address, coords);
+    mapStore.setPlace(id, search.suggestions[id].address, coords);
+    search.term = mapStore.currentPlace.name;
   } catch (e) {
     console.log('Could not retrieve coordinates for selected address.');
   }
+}
+
+const addPlace = () => {
+  mapStore.addPlace();
 }
 
 </script>
@@ -68,10 +73,11 @@ const retrieve = async (id: string) => {
       <button type="submit" class="btn join-item whitespace-nowrap py-2 px-3 bg-secondary text-white font-semibold">Search</button>
     </form>
     <div v-if="search.hasSuggestions" class="suggestions join join-vertical flex border border-secondary">
-      <div v-for="(suggestion, id) in search.suggestions" :key="id" class="flex flex-row justify-between items-center join-item join w-full hover:bg-info-content">
-        <span class="join-item indent">{{ suggestion.address }}</span>
-        <button class="btn btn-primary join-item" @click="retrieve(id.toString())">Show</button>
+      <div v-for="(suggestion, id) in search.suggestions" :key="id" class="flex flex-row items-center join-item w-full hover:bg-info-content">
+        <span class="indent mr-auto">{{ suggestion.address }}</span>
+        <button class="btn btn-info" @click="retrieve(id.toString())">Show</button>
       </div>
+      <button v-if="mapStore.hasCurrentPlace" @click="addPlace" class="btn btn-success w-full">Add</button>
     </div>
   </div>
 

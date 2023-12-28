@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import mapboxgl, { Map, Marker } from 'mapbox-gl';
+import { isEmpty } from 'lodash';
 
 interface Coordinates {
   lng: number;
@@ -12,6 +13,11 @@ interface Place {
   coords: Coordinates;
   // Marker on map
   marker?: Marker,
+  // MapBox ID
+  id: string;
+}
+interface Places {
+  [id: string]: Place;
 }
 // This is an array, 0 index is always long, 1 index is always lat
 type MapboxCoords = { '0': number, '1': number};
@@ -19,6 +25,7 @@ type MapboxCoords = { '0': number, '1': number};
 export type {
   Coordinates,
   Place,
+  Places,
   MapboxCoords,
 }
 
@@ -40,12 +47,14 @@ const DEFAULT_ZOOM = 11;
 
 export const useMapStore = defineStore('map', () => {
   const accessToken = ref('');
-  const currentPlace = ref({} as Place);
-  // Places added to the map and kept after search for use in delivery
-  // TODO: array or map?
-  // const places = ref([] as Place[]);
+
   const map = ref();
   const mapBox = ref();
+
+  const currentPlace = ref({} as Place);
+  const hasCurrentPlace = computed(() => !isEmpty(currentPlace.value));
+  // Places added to the map and kept after search for use in delivery routing
+  const places = ref({} as Places);
 
   const init = (mb: any) => {
     // Copy mapbox template ref from component
@@ -74,12 +83,13 @@ export const useMapStore = defineStore('map', () => {
     currentPlace.value = {} as Place;
   }
 
-  const setPlace = (address: string, coords: Coordinates) => {
+  const setPlace = (id: string, address: string, coords: Coordinates) => {
     clearPlace();
     const marker = new Marker({
       color: 'red',
     }).setLngLat(coords).addTo(map.value);
     currentPlace.value = {
+      id,
       name: address,
       coords,
       marker,
@@ -92,15 +102,27 @@ export const useMapStore = defineStore('map', () => {
     });
   }
 
+  const addPlace = () => {
+    places.value[currentPlace.value.id] = {
+      ...currentPlace.value,
+      marker: new Marker().setLngLat(currentPlace.value.coords).addTo(map.value),
+    };
+    clearPlace();
+    console.log(places.value);
+  }
+
   return {
-    currentPlace,
     accessToken,
     map,
     mapBox,
+    currentPlace,
+    hasCurrentPlace,
+    places,
     init,
     destroy,
     clearPlace,
     setPlace,
+    addPlace,
   };
 });
 
