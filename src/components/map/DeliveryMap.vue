@@ -81,7 +81,7 @@ const addPlace = () => {
     </div>
   </div>
 
-  <input v-model="currentTab" value="2" :disabled="!isLocked || mapStore.hasPlaces" type="radio" name="mapTabs" role="tab" class="tab h-16 sm:h-8" aria-label="Delivery Optimization" />
+  <input v-model="currentTab" value="2" :disabled="!isLocked || !mapStore.hasPlaces" type="radio" name="mapTabs" role="tab" class="tab h-16 sm:h-8" aria-label="Delivery Optimization" />
   <div role="tabpanel" class="tab-content bg-neutral border-base-300 rounded-box p-6">
     <div class="w-full">
       <p v-for="(place, id) in mapStore.places" :key="id">{{ place.name }}</p>
