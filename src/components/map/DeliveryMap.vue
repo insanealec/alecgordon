@@ -72,12 +72,19 @@ const addPlace = () => {
       <input v-model.trim="search.term" class="join-item" type="text" id="address" name="address" placeholder="Address" />
       <button type="submit" class="btn join-item whitespace-nowrap py-2 px-3 bg-secondary text-white font-semibold">Search</button>
     </form>
+    <button v-if="mapStore.hasCurrentPlace" @click="addPlace" class="btn btn-success w-full mb-1">Add</button>
     <div v-if="search.hasSuggestions" class="suggestions join join-vertical flex border border-secondary">
       <div v-for="(suggestion, id) in search.suggestions" :key="id" class="flex flex-row items-center join-item w-full hover:bg-info-content">
         <span class="indent mr-auto">{{ suggestion.address }}</span>
         <button class="btn btn-info" @click="retrieve(id.toString())">Show</button>
       </div>
-      <button v-if="mapStore.hasCurrentPlace" @click="addPlace" class="btn btn-success w-full">Add</button>
+    </div>
+  </div>
+
+  <input v-model="currentTab" value="2" :disabled="!isLocked || mapStore.hasPlaces" type="radio" name="mapTabs" role="tab" class="tab h-16 sm:h-8" aria-label="Delivery Optimization" />
+  <div role="tabpanel" class="tab-content bg-neutral border-base-300 rounded-box p-6">
+    <div class="w-full">
+      <p v-for="(place, id) in mapStore.places" :key="id">{{ place.name }}</p>
     </div>
   </div>
 

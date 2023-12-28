@@ -55,6 +55,7 @@ export const useMapStore = defineStore('map', () => {
   const hasCurrentPlace = computed(() => !isEmpty(currentPlace.value));
   // Places added to the map and kept after search for use in delivery routing
   const places = ref({} as Places);
+  const hasPlaces = computed(() => !isEmpty(places.value));
 
   const init = (mb: any) => {
     // Copy mapbox template ref from component
@@ -118,6 +119,7 @@ export const useMapStore = defineStore('map', () => {
     currentPlace,
     hasCurrentPlace,
     places,
+    hasPlaces,
     init,
     destroy,
     clearPlace,
