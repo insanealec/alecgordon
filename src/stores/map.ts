@@ -13,6 +13,7 @@ interface Place {
   // Marker on map
   marker?: Marker,
 }
+// This is an array, 0 index is always long, 1 index is always lat
 type MapboxCoords = { '0': number, '1': number};
 
 export type {
@@ -26,7 +27,7 @@ const toCoords = (mapCoord: MapboxCoords): Coordinates => {
   return { lng: mapCoord['0'], lat: mapCoord['1'] };
 }
 const fromCoords = (coords: Coordinates): MapboxCoords => {
-  return { '0': coords.lng, '1': coords.lat };
+  return [coords.lng, coords.lat];
 }
 
 export {
@@ -35,6 +36,7 @@ export {
 }
 
 const MAP_STYLE = 'mapbox://styles/mapbox/navigation-night-v1';
+const DEFAULT_ZOOM = 11;
 
 export const useMapStore = defineStore('map', () => {
   const accessToken = ref('');
@@ -54,7 +56,7 @@ export const useMapStore = defineStore('map', () => {
       style: MAP_STYLE,
       // lng,lat
       center: [-83.653824, 41.562829],
-      zoom: 9,
+      zoom: DEFAULT_ZOOM,
     });
   }
 
@@ -82,6 +84,12 @@ export const useMapStore = defineStore('map', () => {
       coords,
       marker,
     };
+    map.value.flyTo({
+      center: fromCoords(coords),
+      zoom: DEFAULT_ZOOM,
+      duration: 3000, // 3 seconds
+      essential: true,
+    });
   }
 
   return {
