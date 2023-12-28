@@ -42,10 +42,15 @@ const retrieve = async (id: string) => {
   try {
     let coords = await search.retrieve(id);
     // Add Marker to map and add to list of Places in mapStore
-    mapStore.setPlace(search.suggestions[id].address, coords);
+    mapStore.setPlace(id, search.suggestions[id].address, coords);
+    search.term = mapStore.currentPlace.name;
   } catch (e) {
     console.log('Could not retrieve coordinates for selected address.');
   }
+}
+
+const addPlace = () => {
+  mapStore.addPlace();
 }
 
 </script>
@@ -67,11 +72,19 @@ const retrieve = async (id: string) => {
       <input v-model.trim="search.term" class="join-item" type="text" id="address" name="address" placeholder="Address" />
       <button type="submit" class="btn join-item whitespace-nowrap py-2 px-3 bg-secondary text-white font-semibold">Search</button>
     </form>
+    <button v-if="mapStore.hasCurrentPlace" @click="addPlace" class="btn btn-success w-full mb-1">Add</button>
     <div v-if="search.hasSuggestions" class="suggestions join join-vertical flex border border-secondary">
-      <div v-for="(suggestion, id) in search.suggestions" :key="id" class="flex flex-row justify-between items-center join-item join w-full hover:bg-info-content">
-        <span class="join-item indent">{{ suggestion.address }}</span>
-        <button class="btn btn-primary join-item" @click="retrieve(id.toString())">Show</button>
+      <div v-for="(suggestion, id) in search.suggestions" :key="id" class="flex flex-row items-center join-item w-full hover:bg-info-content">
+        <span class="indent mr-auto">{{ suggestion.address }}</span>
+        <button class="btn btn-info" @click="retrieve(id.toString())">Show</button>
       </div>
+    </div>
+  </div>
+
+  <input v-model="currentTab" value="2" :disabled="!isLocked || !mapStore.hasPlaces" type="radio" name="mapTabs" role="tab" class="tab h-16 sm:h-8" aria-label="Delivery Optimization" />
+  <div role="tabpanel" class="tab-content bg-neutral border-base-300 rounded-box p-6">
+    <div class="w-full">
+      <p v-for="(place, id) in mapStore.places" :key="id">{{ place.name }}</p>
     </div>
   </div>
 
