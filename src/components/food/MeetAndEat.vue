@@ -22,7 +22,7 @@ const addPerson = () => {
         <div v-for="cuisine in CUISINES" :key="cuisine" class="form-control">
           <label class="label cursor-pointer">
             <span class="label-text">{{ cuisine }}</span>
-            <input type="checkbox" class="checkbox" />
+            <input type="checkbox" class="checkbox" :value="cuisine" v-model="person.cuisines" />
           </label>
         </div>
       </div>
@@ -32,6 +32,8 @@ const addPerson = () => {
   <button @click="addPerson" name="peopleTabs" role="tab" class="tab h-16 sm:h-8" aria-label="Add Person">Add Person</button>
 
 </div>
+
+<button @click="food.matches()" class="btn btn-primary w-full">Meet</button>
 
 </template>
 

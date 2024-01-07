@@ -7,7 +7,7 @@ import BetterLayout from './components/betterlist/BetterLayout.vue';
 import BetterList from './components/betterlist/BetterList.vue';
 import CategoryManager from './components/betterlist/CategoryManager.vue';
 import DeliveryMap from './components/map/DeliveryMap.vue';
-import EatAndGreet from './components/food/EatAndGreet.vue';
+import MeetAndEat from './components/food/MeetAndEat.vue';
 
 export default [
   { name: 'home', path: '/', component: AboutMe },
@@ -39,9 +39,9 @@ export default [
     component: DeliveryMap,
   },
   {
-    name: 'eat-and-greet',
-    path: '/eat-and-greet',
-    component: EatAndGreet,
+    name: 'meet-and-eat',
+    path: '/meet-and-eat',
+    component: MeetAndEat,
   },
 ];
 
