@@ -56,7 +56,6 @@ export const useFoodStore = defineStore('food', () => {
         instances[cuisine]++;
       }
     }
-    console.log(instances)
     return instances;
   })
 

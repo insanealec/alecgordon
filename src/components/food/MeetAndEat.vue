@@ -45,8 +45,8 @@ const addPerson = () => {
 
 const chartClick = (event: any) => {
   const chart = chartRef.value.chart;
-  const clickedEl = chart.getElementsAtEventForMode(event, 'nearest', { intersect: true }, false);
-  console.log(chart, clickedEl)
+  const clickedEl = chart.getElementsAtEventForMode(event, 'nearest', { intersect: true }, false)[0];
+  alert(`Placeholder search map for: ${chartData.value.labels[clickedEl.index]}`);
 }
 
 </script>
