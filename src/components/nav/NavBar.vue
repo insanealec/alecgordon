@@ -16,6 +16,7 @@ import ThemeToggle from './ThemeToggle.vue';
           <ul class="p-2">
             <li><RouterLink to="/betterlist">BetterList</RouterLink></li>
             <li><RouterLink to="/delivery">Delivery Optimization</RouterLink></li>
+            <li><RouterLink to="/meet-and-eat">Meet and Eat</RouterLink></li>
           </ul>
         </li>
         <li><a href="https://github.com/insanealec/alecgordon" class="gap-0" target="_blank">Github <span class="text-sm">&#128279;</span></a></li>
@@ -32,6 +33,7 @@ import ThemeToggle from './ThemeToggle.vue';
           <ul class="border border-secondary p-2 z-30">
             <li><RouterLink to="/betterlist">BetterList</RouterLink></li>
             <li><RouterLink to="/delivery">Delivery Optimization</RouterLink></li>
+            <li><RouterLink to="/meet-and-eat">Meet and Eat</RouterLink></li>
           </ul>
         </details>
       </li>
