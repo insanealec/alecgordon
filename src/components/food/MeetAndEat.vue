@@ -1,13 +1,52 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { useFoodStore, CUISINES } from '@/stores/food';
+import { Pie } from 'vue-chartjs';
+import { Chart, Colors, Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale } from 'chart.js'
+import { useToggle } from '@vueuse/core';
+
+Chart.register(Colors, Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale);
+// Match text to site color
+Chart.defaults.color = window.getComputedStyle(document.getElementsByTagName('html')[0]).getPropertyValue('color');
+const CHART_OPTIONS = {
+  responsive: true,
+  plugins: {
+    colors: {
+      // Dynamic colors
+      forceOverride: true,
+    },
+    legend: {
+      title: {
+        text: 'Click a match to find restaurants',
+        display: true,
+      },
+    }
+  }
+};
 
 const currentTab = ref(0);
-
+const showMatches = ref(false);
+const toggleChart = useToggle(showMatches);
+const chartRef = ref();
 const food = useFoodStore();
+
+const chartData = computed(() => {
+  const labels = Object.keys(food.matches);
+  const data = Object.values(food.matches);
+  return {
+    labels,
+    datasets: [{ data, label: '# matches' }],
+  };
+})
 
 const addPerson = () => {
   currentTab.value = food.addPerson();
+}
+
+const chartClick = (event: any) => {
+  const chart = chartRef.value.chart;
+  const clickedEl = chart.getElementsAtEventForMode(event, 'nearest', { intersect: true }, false);
+  console.log(chart, clickedEl)
 }
 
 </script>
@@ -33,7 +72,11 @@ const addPerson = () => {
 
 </div>
 
-<button @click="food.matches()" class="btn btn-primary w-full">Meet</button>
+<button @click="toggleChart()" class="btn btn-primary w-full">Meet</button>
+
+<div v-if="showMatches" class="mt-3">
+  <Pie id="pie-chart" :options="CHART_OPTIONS" :data="chartData" ref="chartRef" @click="chartClick" />
+</div>
 
 </template>
 

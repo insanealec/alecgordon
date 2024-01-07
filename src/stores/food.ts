@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 interface Person {
   name: string;
@@ -47,7 +47,7 @@ export const useFoodStore = defineStore('food', () => {
     return len - 1;
   }
 
-  const matches = () => {
+  const matches = computed(() => {
     // Mark each instance of a chosen cuisine
     const instances: { [name: string]: number } = {};
     for (const person of people.value) {
@@ -58,7 +58,7 @@ export const useFoodStore = defineStore('food', () => {
     }
     console.log(instances)
     return instances;
-  }
+  })
 
   return {
     people,
