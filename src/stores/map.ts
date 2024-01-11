@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
 import mapboxgl, { Map, Marker } from 'mapbox-gl';
 import { isEmpty } from 'lodash';
+import { useStorage } from '@vueuse/core';
 
 interface Coordinates {
   lng: number;
@@ -46,7 +47,9 @@ const MAP_STYLE = 'mapbox://styles/mapbox/navigation-night-v1';
 const DEFAULT_ZOOM = 11;
 
 export const useMapStore = defineStore('map', () => {
-  const accessToken = ref('');
+  // Save mapbox token to localStorage
+  const accessToken = useStorage('accessToken', '');
+  const hasToken = computed(() => !isEmpty(accessToken.value));
 
   const map = ref();
   const mapBox = ref();
@@ -72,11 +75,14 @@ export const useMapStore = defineStore('map', () => {
 
   const destroy = () => {
     clearPlace();
-    map.value.remove();
-    map.value = null;
+    if (map.value) {
+      map.value.remove();
+      map.value = null;
+    }
   }
 
   const clearPlace = () => {
+    if (!hasCurrentPlace.value) return;
     // Clear old marker
     if (currentPlace.value.marker) {
       currentPlace.value.marker.remove();
@@ -114,6 +120,7 @@ export const useMapStore = defineStore('map', () => {
 
   return {
     accessToken,
+    hasToken,
     map,
     mapBox,
     currentPlace,
