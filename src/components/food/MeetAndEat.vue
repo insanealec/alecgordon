@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
+import TokenModal from '@/components/shared/TokenModal.vue';
 import { useFoodStore, CUISINES } from '@/stores/food';
 import { Pie } from 'vue-chartjs';
 import { Chart, Colors, Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale } from 'chart.js'
@@ -52,6 +53,7 @@ const chartClick = (event: any) => {
 </script>
 
 <template>
+<TokenModal />
 <div role="tablist" class="tabs tabs-lifted">
 
   <template v-for="(person, index) in food.people" :key="person">
