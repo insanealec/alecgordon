@@ -133,6 +133,7 @@ export const useListStore = defineStore('list', () => {
     readyList,
     completeList,
     categoryList,
+    categoryTerms,
     addTerm,
     addReady,
     addComplete,
