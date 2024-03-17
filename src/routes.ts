@@ -8,6 +8,8 @@ import BetterList from './components/betterlist/BetterList.vue';
 import CategoryManager from './components/betterlist/CategoryManager.vue';
 import DeliveryMap from './components/map/DeliveryMap.vue';
 import MeetAndEat from './components/food/MeetAndEat.vue';
+import CaesarCypher from './components/challenges/CaesarCypher.vue';
+import NostrClient from './components/nostr/NostrClient.vue';
 
 export default [
   { name: 'home', path: '/', component: AboutMe },
@@ -42,6 +44,16 @@ export default [
     name: 'meet-and-eat',
     path: '/meet-and-eat',
     component: MeetAndEat,
+  },
+  {
+    name: 'cypher',
+    path: '/cypher',
+    component: CaesarCypher,
+  },
+  {
+    name: 'nostr',
+    path: '/nostr',
+    component: NostrClient,
   },
 ];
 

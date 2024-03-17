@@ -1,32 +1,40 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-import { useToggle } from '@vueuse/core';
+import { ref, watch, onMounted } from 'vue';
+import { storeToRefs } from 'pinia';
 import { useMapStore, type Coordinates } from '@/stores/map';
 import { useSearchStore } from '@/stores/search';
 import 'mapbox-gl/dist/mapbox-gl.css'
-
-// User Mapbox Token mutex
-const isLocked = ref(false);
-const toggleLock = useToggle(isLocked);
-const lockStyle = computed(() => isLocked.value ? 'pointer-events-none select-none blur-sm' : '');
+import TokenModal from '../shared/TokenModal.vue';
 
 const currentTab = ref(0);
 
 const search = useSearchStore();
 const mapStore = useMapStore();
+const { hasToken } = storeToRefs(mapStore);
 const mapBox = ref();
 
-const submit = () => {
-  if (!mapStore.accessToken) return;
-  if (isLocked.value) {
-    mapStore.destroy();
-    currentTab.value = 0;
-  } else {
+watch(hasToken, () => {
+  setupMap();
+})
+
+onMounted(() => {
+  setupMap();
+})
+
+/**
+ * Token entry is handled by a modal, so we:
+ *  - Watch for if the token is added or removed
+ *  - Check on component mount in case the token is in localstorage
+ * Which lets us either destroy the map if the token is gone, or create it when a token is detected.
+ * Token is also shared to the search pinia store.
+ */
+const setupMap = () => {
+  if (hasToken.value) {
     mapStore.init(mapBox);
-    currentTab.value = 1;
+  } else {
+    mapStore.destroy();
   }
   search.accessToken = mapStore.accessToken;
-  toggleLock();
 }
 
 const suggest = () => {
@@ -60,13 +68,10 @@ const addPlace = () => {
 
   <input v-model="currentTab" value="0" type="radio" name="mapTabs" role="tab" class="tab h-16 sm:h-8" aria-label="Mapbox Token Entry" />
   <div role="tabpanel" class="tab-content bg-neutral border-base-300 rounded-box p-6">
-    <form class="join w-full mb-1" @submit.prevent="submit">
-      <input v-model.trim="mapStore.accessToken" :disabled="isLocked" :class="lockStyle" class="join-item" type="text" id="token" name="token" placeholder="Mapbox API Token" />
-      <button type="submit" class="btn join-item whitespace-nowrap py-2 px-3 bg-cyan-500 text-white font-semibold">{{ isLocked ? 'Clear' : 'Initialize' }} Map</button>
-    </form>
+    <TokenModal />
   </div>
 
-  <input v-model="currentTab" value="1" :disabled="!isLocked" type="radio" name="mapTabs" role="tab" class="tab h-16 sm:h-8" aria-label="Address Search" />
+  <input v-model="currentTab" value="1" :disabled="!hasToken" type="radio" name="mapTabs" role="tab" class="tab h-16 sm:h-8" aria-label="Address Search" />
   <div role="tabpanel" class="tab-content bg-neutral border-base-300 rounded-box p-6">
     <form class="join w-full mb-1" @submit.prevent="suggest">
       <input v-model.trim="search.term" class="join-item" type="text" id="address" name="address" placeholder="Address" />
@@ -81,7 +86,7 @@ const addPlace = () => {
     </div>
   </div>
 
-  <input v-model="currentTab" value="2" :disabled="!isLocked || !mapStore.hasPlaces" type="radio" name="mapTabs" role="tab" class="tab h-16 sm:h-8" aria-label="Delivery Optimization" />
+  <input v-model="currentTab" value="2" :disabled="!hasToken || !mapStore.hasPlaces" type="radio" name="mapTabs" role="tab" class="tab h-16 sm:h-8" aria-label="Delivery Optimization" />
   <div role="tabpanel" class="tab-content bg-neutral border-base-300 rounded-box p-6">
     <div class="w-full">
       <p v-for="(place, id) in mapStore.places" :key="id">{{ place.name }}</p>
