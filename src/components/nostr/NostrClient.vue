@@ -1,41 +1,36 @@
 <script setup lang="ts">
 import { SimplePool, type Event } from 'nostr-tools';
-import { ref } from 'vue';
-
-const RELAYS = [
-  "wss://relay.exit.pub",
-  "wss://relayable.org",
-  "wss://relay.damus.io",
-  "wss://relay2.nostrasia.net",
-  "wss://purplepag.es",
-  "wss://nos.lol",
-];
+import {
+  Metadata,
+  ShortTextNote,
+  // RecommendRelay,
+} from 'nostr-tools/kinds';
+import NostrNote from './NostrNote.vue';
+import { useNostrStore } from '@/stores/nostr';
 
 const pool = new SimplePool();
-
-const events = ref<Event[]>([]);
+const store = useNostrStore();
+store.addAuthor('npub1pgr9n72p64ykuxuyywj9xm7q734a7whgxm8xzcq39sggafattlnspjcx05');
 
 let h = pool.subscribeMany(
-  [...RELAYS],
+  store.relays,
   [
     {
-      kinds: [0, 1],
+      kinds: [Metadata, ShortTextNote],
       limit: 10,
-      // search: "hello world",
+      authors: Object.values(store.authors),
     }
   ],
   {
+    maxWait: 1000,
     onevent(event: Event) {
-      // this will only be called once the first time the event is received
-      events.value.push(event);
+      store.events.push(event);
     },
     oneose() {
       h.close();
     }
   }
 );
-
-h.close();
 
 console.log(pool);
 </script>
@@ -44,6 +39,8 @@ console.log(pool);
 <template>
   <div>
     <h1>Nostr</h1>
-    <p v-for="event in events" :key="event.id">{{ event }}</p>
+    <template v-for="event in store.events" :key="event.id">
+      <NostrNote v-if="event.kind === ShortTextNote" :note="event" />
+    </template>
   </div>
 </template>
