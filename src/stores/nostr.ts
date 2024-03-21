@@ -9,8 +9,15 @@ import {
 } from 'nostr-tools/kinds';
 import * as nip19 from 'nostr-tools/nip19';
 
+interface Author {
+  pubkey: string;
+  hexkey: string;
+  name?: string;
+  about?: string;
+  picture?: string;
+}
 interface NostrAuthors {
-  [pubkey: string]: string;
+  [pubkey: string]: Author;
 }
 
 const INITIAL_RELAYS = [
@@ -50,7 +57,10 @@ export const useNostrStore = defineStore('nostr', () => {
   });
 
   const addAuthor = (pubkey: string) => {
-    authors.value[pubkey] = nip19.decode(pubkey).data.toString();
+    authors.value[pubkey] = {
+      pubkey,
+      hexkey: nip19.decode(pubkey).data.toString()
+    };
   };
 
   return {

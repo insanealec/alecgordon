@@ -8,8 +8,7 @@ const props = defineProps<{
 }>();
 
 const store = useNostrStore();
-const user = computed(() => JSON.parse(store.users.get(props.note?.pubkey)?.content));
-console.log(user)
+const user = computed(() => JSON.parse(store.users.get(props.note?.pubkey)?.content ?? '{}'));
 </script>
 
 <template>

@@ -7,18 +7,19 @@ import {
 } from 'nostr-tools/kinds';
 import NostrNote from './NostrNote.vue';
 import { useNostrStore } from '@/stores/nostr';
+import FollowedAuthors from './FollowedAuthors.vue';
 
 const pool = new SimplePool();
 const store = useNostrStore();
-store.addAuthor('npub1pgr9n72p64ykuxuyywj9xm7q734a7whgxm8xzcq39sggafattlnspjcx05');
+store.addAuthor('npub1hp7xxg4mk0yu6k05z5sc5j2k05k3fwl6tccv3ngcjg6t4728tm3qga22el');
 
-let h = pool.subscribeMany(
+let subCloser = pool.subscribeMany(
   store.relays,
   [
     {
       kinds: [Metadata, ShortTextNote],
       limit: 10,
-      authors: Object.values(store.authors),
+      authors: Object.values(store.authors).map((author) => author.hexkey),
     }
   ],
   {
@@ -27,12 +28,10 @@ let h = pool.subscribeMany(
       store.events.push(event);
     },
     oneose() {
-      h.close();
+      subCloser.close();
     }
   }
 );
-
-console.log(pool);
 </script>
 
 
@@ -42,5 +41,7 @@ console.log(pool);
     <template v-for="event in store.events" :key="event.id">
       <NostrNote v-if="event.kind === ShortTextNote" :note="event" />
     </template>
+
+    <FollowedAuthors />
   </div>
 </template>
