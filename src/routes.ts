@@ -50,10 +50,10 @@ export default [
     path: '/cypher',
     component: CaesarCypher,
   },
-  {
-    name: 'nostr',
-    path: '/nostr',
-    component: NostrClient,
-  },
+  // {
+  //   name: 'nostr',
+  //   path: '/nostr',
+  //   component: NostrClient,
+  // },
 ];
 

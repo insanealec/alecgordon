@@ -18,7 +18,7 @@ import ThemeToggle from './ThemeToggle.vue';
             <li><RouterLink to="/delivery">Delivery Optimization</RouterLink></li>
             <li><RouterLink to="/meet-and-eat">Meet and Eat</RouterLink></li>
             <li><RouterLink to="/cypher">Caesar Cypher</RouterLink></li>
-            <li><RouterLink to="/nostr">Nostr Client</RouterLink></li>
+            <!-- <li><RouterLink to="/nostr">Nostr Client</RouterLink></li> -->
           </ul>
         </li>
         <li><a href="https://github.com/insanealec/alecgordon" class="gap-0" target="_blank">Github <span class="text-sm">&#128279;</span></a></li>
@@ -37,7 +37,7 @@ import ThemeToggle from './ThemeToggle.vue';
             <li><RouterLink to="/delivery">Delivery Optimization</RouterLink></li>
             <li><RouterLink to="/meet-and-eat">Meet and Eat</RouterLink></li>
             <li><RouterLink to="/cypher">Caesar Cypher</RouterLink></li>
-            <li><RouterLink to="/nostr">Nostr Client</RouterLink></li>
+            <!-- <li><RouterLink to="/nostr">Nostr Client</RouterLink></li> -->
           </ul>
         </details>
       </li>

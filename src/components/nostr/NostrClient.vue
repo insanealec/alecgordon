@@ -11,27 +11,27 @@ import FollowedAuthors from './FollowedAuthors.vue';
 
 const pool = new SimplePool();
 const store = useNostrStore();
-store.addAuthor('npub1hp7xxg4mk0yu6k05z5sc5j2k05k3fwl6tccv3ngcjg6t4728tm3qga22el');
+// store.addAuthor('npub1hp7xxg4mk0yu6k05z5sc5j2k05k3fwl6tccv3ngcjg6t4728tm3qga22el');
 
-let subCloser = pool.subscribeMany(
-  store.relays,
-  [
-    {
-      kinds: [Metadata, ShortTextNote],
-      limit: 10,
-      authors: Object.values(store.authors).map((author) => author.hexkey),
-    }
-  ],
-  {
-    maxWait: 1000,
-    onevent(event: Event) {
-      store.events.push(event);
-    },
-    oneose() {
-      subCloser.close();
-    }
-  }
-);
+// let subCloser = pool.subscribeMany(
+//   store.relays,
+//   [
+//     {
+//       kinds: [Metadata, ShortTextNote],
+//       limit: 10,
+//       authors: Object.values(store.authors).map((author) => author.hexkey),
+//     }
+//   ],
+//   {
+//     maxWait: 1000,
+//     onevent(event: Event) {
+//       store.events.push(event);
+//     },
+//     oneose() {
+//       subCloser.close();
+//     }
+//   }
+// );
 </script>
 
 
