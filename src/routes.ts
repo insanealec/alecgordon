@@ -9,7 +9,7 @@ import CategoryManager from './components/betterlist/CategoryManager.vue';
 import DeliveryMap from './components/map/DeliveryMap.vue';
 import MeetAndEat from './components/food/MeetAndEat.vue';
 import CaesarCypher from './components/challenges/CaesarCypher.vue';
-import NostrClient from './components/nostr/NostrClient.vue';
+import FormAdmin from './components/form-builder/FormAdmin.vue';
 
 export default [
   { name: 'home', path: '/', component: AboutMe },
@@ -50,10 +50,10 @@ export default [
     path: '/cypher',
     component: CaesarCypher,
   },
-  // {
-  //   name: 'nostr',
-  //   path: '/nostr',
-  //   component: NostrClient,
-  // },
+  {
+    name: 'form-builder',
+    path: '/form-builder',
+    component: FormAdmin,
+  },
 ];
 
