@@ -1,22 +1,26 @@
 <template>
-  <h2>Hi! I'm Alec Gordon.</h2>
+  <h2>Hi, I’m Alec Gordon.</h2>
 
   <p class="paragraph">
-    I am a seasoned Senior Software Developer with a strong background in software engineering and full-stack development.
-    My career has been characterized by a dedication to excellence and a deep passion for emerging technologies.
-  </p>
-  <p class="paragraph">
-    Over the years, I have consistently led and delivered high-impact projects, specializing in enhancing web applications, improving accessibility, and seamlessly integrating APIs.
-    My proficiency spans a range of languages, including JavaScript, TypeScript, C#, PHP, SQL, and more, coupled with expertise in frameworks like Vue, C# MVC, Laravel, and React.
-    I excel in identifying and optimizing code, and my ability to engage with stakeholders to understand their unique needs has been a hallmark of my work.
-  </p>
-  <p class="paragraph">
-    Some of my key responsibilities have included independently managing multiple customer and internal-facing projects, identifying redundant or inefficient code for refactoring or rewriting into microservices, scoping tickets, and defining project requirements for a team of six.
-    I also actively engaged with stakeholders to gain a deep understanding of their unique needs.
-  </p>
-  <p class="paragraph">
-    My work experience has equipped me with a diverse skill set, allowing me to take ownership of complex solutions and drive projects to successful completion.
-    My primary objective is to consistently produce high-quality code on a daily basis.
+    I’m a senior full-stack software engineer with 11+ years of experience building and maintaining production web
+    applications. I’ve spent most of my career working on B2B and consumer-facing platforms where reliability,
+    performance, and developer experience actually matter.
   </p>
 
+  <p class="paragraph">
+    I’m strongest in Vue and Laravel, and I enjoy working across the stack — especially designing APIs, improving
+    data-heavy workflows, and cleaning up systems that have grown messy over time. I tend to gravitate toward work
+    that reduces manual effort, improves clarity, and makes the next feature easier to build than the last.
+  </p>
+
+  <p class="paragraph">
+    In senior roles, my impact has come less from process and more from output: shipping solid solutions, spotting
+    weak points early, and helping teams move faster by simplifying complex problems. I’ve worked closely with
+    product and non-technical stakeholders, but I’m happiest when I’m deep in the code and solving real problems.
+  </p>
+
+  <p class="paragraph">
+    Right now, I’m looking for a remote role where I can continue building high-quality software with a thoughtful,
+    pragmatic team.
+  </p>
 </template>

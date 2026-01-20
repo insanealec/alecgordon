@@ -10,7 +10,6 @@ import ThemeToggle from './ThemeToggle.vue';
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
       </div>
       <ul tabindex="0" class="bg-base-100 border border-secondary menu menu-sm dropdown-content mt-3 z-30 p-2 shadow rounded-box w-52">
-        <li><RouterLink :to="{ name: 'experiences' }">Experiences</RouterLink></li>
         <li>
           <summary>Side-projects</summary>
           <ul class="p-2">
@@ -28,7 +27,6 @@ import ThemeToggle from './ThemeToggle.vue';
   </div>
   <div class="navbar-center hidden lg:flex">
     <ul class="menu menu-horizontal px-1">
-      <li><RouterLink :to="{ name: 'experiences' }">Experiences</RouterLink></li>
       <li>
         <details>
           <summary>Side-projects</summary>

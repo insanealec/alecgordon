@@ -10,10 +10,10 @@ import DeliveryMap from './components/map/DeliveryMap.vue';
 import MeetAndEat from './components/food/MeetAndEat.vue';
 import CaesarCypher from './components/challenges/CaesarCypher.vue';
 import FormAdmin from './components/form-builder/FormAdmin.vue';
+import Home from './components/Home.vue';
 
 export default [
-  { name: 'home', path: '/', component: AboutMe },
-  { name: 'experiences', path: '/experiences', component: WorkExperience },
+  { name: 'home', path: '/', component: Home },
   // Projects: will just be top-level
   { path: '/card-standardization', component: CardStandardization },
   { path: '/pagination', component: PaginationProject },
