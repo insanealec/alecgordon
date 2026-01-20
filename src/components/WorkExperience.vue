@@ -5,7 +5,7 @@ import TimelineCheck from '@/assets/svgs/TimelineCheck.vue';
 <template>
   <ul class="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
 
-    <!-- Roof Maxx -->
+    <!-- RoofMaxx -->
     <li>
       <div class="timeline-middle">
         <TimelineCheck />
@@ -13,7 +13,7 @@ import TimelineCheck from '@/assets/svgs/TimelineCheck.vue';
 
       <div class="timeline-start md:text-end mb-10">
         <time class="font-mono italic">2024&mdash;2026</time>
-        <div class="text-lg font-bold">Roof Maxx</div>
+        <div class="text-lg font-bold">RoofMaxx</div>
 
         <p class="paragraph">
           As a Senior Software Engineer at Roof Maxx, I worked on a B2B SaaS platform used by dealers and internal
@@ -31,10 +31,10 @@ import TimelineCheck from '@/assets/svgs/TimelineCheck.vue';
           My senior contributions came primarily through strong technical ownership, deep product knowledge, and
           consistently delivering solutions that simplified workflows for both dealers and internal teams.
         </p>
+      </div>
 
-        <p class="paragraph">
+      <div class="timeline-end mb-10">
           <strong>Tech:</strong> Vue, Laravel, MySQL
-        </p>
       </div>
 
       <hr />
@@ -76,12 +76,7 @@ import TimelineCheck from '@/assets/svgs/TimelineCheck.vue';
       </div>
 
       <div class="timeline-start md:text-end mb-10">
-        <h4 class="italic">Projects</h4>
-        <ul class="list-disc list-inside">
-          <li><RouterLink to="/card-standardization">Card Standardization</RouterLink></li>
-          <li><RouterLink to="/pagination">Pagination</RouterLink></li>
-          <li><RouterLink to="/misc">Miscellaneous</RouterLink></li>
-        </ul>
+          <strong>Tech:</strong> Vue, GraphQL
       </div>
 
       <hr />
@@ -102,6 +97,10 @@ import TimelineCheck from '@/assets/svgs/TimelineCheck.vue';
           developing and maintaining numerous internal REST APIs, and supporting a large collection of repositories
           used across sales, manufacturing, and operations.
         </p>
+      </div>
+
+      <div class="timeline-end mb-10">
+          <strong>Tech:</strong> Laravel, Vue, SqlServer, C#, Java
       </div>
 
       <hr />
