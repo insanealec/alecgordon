@@ -1,5 +1,7 @@
 <template>
-  <h2>Hi, I’m Alec Gordon.</h2>
+  <h2 class="text-3xl font-semibold text-slate-100">
+    Hi, I’m <span class="text-indigo-300">Alec Gordon</span>.
+  </h2>
 
   <p class="paragraph">
     I’m a senior full-stack software engineer with 11+ years of experience building and maintaining production web
