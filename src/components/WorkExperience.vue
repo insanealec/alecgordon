@@ -46,7 +46,7 @@ import TimelineCheck from '@/assets/svgs/TimelineCheck.vue';
         <TimelineCheck />
       </div>
 
-      <div class="timeline-start md:text-end mb-10">
+      <div class="timeline-end mb-10">
         <time class="font-mono italic">2021&mdash;2023</time>
         <div class="text-lg font-bold">Ibotta</div>
 
@@ -75,7 +75,7 @@ import TimelineCheck from '@/assets/svgs/TimelineCheck.vue';
         </p>
       </div>
 
-      <div class="timeline-end mb-10">
+      <div class="timeline-start md:text-end mb-10">
         <h4 class="italic">Projects</h4>
         <ul class="list-disc list-inside">
           <li><RouterLink to="/card-standardization">Card Standardization</RouterLink></li>
@@ -93,7 +93,7 @@ import TimelineCheck from '@/assets/svgs/TimelineCheck.vue';
         <TimelineCheck />
       </div>
 
-      <div class="timeline-end mb-10">
+      <div class="timeline-start md:text-end mb-10">
         <time class="font-mono italic">2015&mdash;2021</time>
         <div class="text-lg font-bold">The McAlear Group</div>
 

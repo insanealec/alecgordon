@@ -1,5 +1,3 @@
-import AboutMe from '@/components/AboutMe.vue';
-import WorkExperience from './components/WorkExperience.vue';
 import CardStandardization from './components/projects/CardStandardization.vue';
 import PaginationProject from './components/projects/PaginationProject.vue';
 import MiscIbotta from './components/projects/MiscIbotta.vue';
@@ -10,10 +8,10 @@ import DeliveryMap from './components/map/DeliveryMap.vue';
 import MeetAndEat from './components/food/MeetAndEat.vue';
 import CaesarCypher from './components/challenges/CaesarCypher.vue';
 import FormAdmin from './components/form-builder/FormAdmin.vue';
-import Home from './components/Home.vue';
+import HomePage from './components/HomePage.vue';
 
 export default [
-  { name: 'home', path: '/', component: Home },
+  { name: 'home', path: '/', component: HomePage },
   // Projects: will just be top-level
   { path: '/card-standardization', component: CardStandardization },
   { path: '/pagination', component: PaginationProject },
