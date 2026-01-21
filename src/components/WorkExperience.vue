@@ -51,8 +51,7 @@ import TimelineCheck from '@/assets/svgs/TimelineCheck.vue';
         <div class="text-lg font-bold">Ibotta</div>
 
         <p class="paragraph">
-          During my time as a Senior Fullstack Engineer at
-          <a href="https://ibotta.com/home" target="_blank" rel="noopener noreferrer">Ibotta</a>,
+          During my time as a Senior Fullstack Engineer at Ibotta,
           I led projects focused on improving the e-commerce web experience, including accessibility enhancements,
           navigation improvements, and GraphQL API integrations.
         </p>
