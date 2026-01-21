@@ -13,11 +13,11 @@ import ThemeToggle from './ThemeToggle.vue';
         <li>
           <summary>Side-projects</summary>
           <ul class="p-2">
-            <li><RouterLink to="/betterlist">BetterList</RouterLink></li>
-            <li><RouterLink to="/delivery">Delivery Optimization</RouterLink></li>
-            <li><RouterLink to="/meet-and-eat">Meet and Eat</RouterLink></li>
-            <li><RouterLink to="/cypher">Caesar Cypher</RouterLink></li>
-            <li><RouterLink to="/form-builder">Form Builder</RouterLink></li>
+            <li><RouterLink to="/demo/betterlist">BetterList</RouterLink></li>
+            <li><RouterLink to="/demo/delivery">Delivery Optimization</RouterLink></li>
+            <li><RouterLink to="/demo/meet-and-eat">Meet and Eat</RouterLink></li>
+            <li><RouterLink to="/demo/cypher">Caesar Cypher</RouterLink></li>
+            <li><RouterLink to="/demo/form-builder">Form Builder</RouterLink></li>
           </ul>
         </li>
         <li><a href="https://github.com/insanealec/alecgordon" class="gap-0" target="_blank">Github <span class="text-sm">&#128279;</span></a></li>
@@ -31,11 +31,11 @@ import ThemeToggle from './ThemeToggle.vue';
         <details>
           <summary>Side-projects</summary>
           <ul class="border border-secondary p-2 z-30">
-            <li><RouterLink to="/betterlist">BetterList</RouterLink></li>
-            <li><RouterLink to="/delivery">Delivery Optimization</RouterLink></li>
-            <li><RouterLink to="/meet-and-eat">Meet and Eat</RouterLink></li>
-            <li><RouterLink to="/cypher">Caesar Cypher</RouterLink></li>
-            <li><RouterLink to="/form-builder">Form Builder</RouterLink></li>
+            <li><RouterLink to="/demo/betterlist">BetterList</RouterLink></li>
+            <li><RouterLink to="/demo/delivery">Delivery Optimization</RouterLink></li>
+            <li><RouterLink to="/demo/meet-and-eat">Meet and Eat</RouterLink></li>
+            <li><RouterLink to="/demo/cypher">Caesar Cypher</RouterLink></li>
+            <li><RouterLink to="/demo/form-builder">Form Builder</RouterLink></li>
           </ul>
         </details>
       </li>
