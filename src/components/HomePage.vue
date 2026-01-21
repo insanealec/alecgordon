@@ -25,7 +25,10 @@ import WorkExperience from './WorkExperience.vue';
     <section class="relative w-full flex justify-center pt-14 pb-10 px-6 overflow-hidden">
       <!-- Background gradient (left glow / ambient) -->
       <div
-        class="pointer-events-none absolute inset-0"
+        class="pointer-events-none absolute top-0 bottom-0
+         left-1/2 -translate-x-[50%]
+         w-[1400px]
+         bg-gradient-to-r from-indigo-900/40 via-indigo-900/10 to-transparent"
         aria-hidden="true"
       >
         <div
