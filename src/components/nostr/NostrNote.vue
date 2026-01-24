@@ -8,13 +8,24 @@ const props = defineProps<{
 }>();
 
 const store = useNostrStore();
-const user = computed(() => JSON.parse(store.users.get(props.note?.pubkey)?.content ?? '{}'));
+const user = computed(() => {
+  const userEvent = store.users.get(props.note?.pubkey);
+  if (!userEvent) return null;
+  try {
+    return JSON.parse(userEvent.content);
+  } catch {
+    return null;
+  }
+});
 </script>
 
 <template>
 <div class="card bg-neutral shadow-xl my-2">
   <div class="card-body">
-    <h2 class="card-title" v-if="user"><img :src="user.picture" class="h-24" />{{ user.displayName ?? user.display_name ?? user.name }}</h2>
+    <h2 class="card-title" v-if="user">
+      <img :src="user.picture" class="h-24" />
+      {{ user.displayName ?? user.display_name ?? user.name }}
+    </h2>
     <p v-html="note.content"></p>
     <div>
       <div v-for="[_, tag] in note.tags" :key="tag" class="badge badge-primary badge-outline m-1 p-3">{{ tag }}</div>

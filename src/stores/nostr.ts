@@ -21,10 +21,8 @@ interface NostrAuthors {
 }
 
 const INITIAL_RELAYS = [
-  "wss://relay.exit.pub",
   "wss://relayable.org",
   "wss://relay.damus.io",
-  "wss://relay2.nostrasia.net",
   "wss://purplepag.es",
   "wss://nos.lol",
 ];
@@ -57,10 +55,39 @@ export const useNostrStore = defineStore('nostr', () => {
   });
 
   const addAuthor = (pubkey: string) => {
-    authors.value[pubkey] = {
-      pubkey,
-      hexkey: nip19.decode(pubkey).data.toString()
-    };
+    // Check if author already exists
+    if (authors.value[pubkey]) {
+      return;
+    }
+
+    try {
+      const { type, data } = nip19.decode(pubkey);
+      if (type === 'npub') {
+        authors.value[pubkey] = {
+          pubkey,
+          hexkey: data.toString()
+        };
+      }
+    } catch (error) {
+      console.error('Error decoding npub:', error);
+    }
+  };
+
+  const removeAuthor = (pubkey: string) => {
+    delete authors.value[pubkey];
+  };
+
+  const addRelay = (relay: string) => {
+    if (!relays.value.includes(relay)) {
+      relays.value.push(relay);
+    }
+  };
+
+  const removeRelay = (relay: string) => {
+    const index = relays.value.indexOf(relay);
+    if (index > -1) {
+      relays.value.splice(index, 1);
+    }
   };
 
   return {
@@ -73,5 +100,8 @@ export const useNostrStore = defineStore('nostr', () => {
     notes,
     //methods
     addAuthor,
+    removeAuthor,
+    addRelay,
+    removeRelay,
   };
 });

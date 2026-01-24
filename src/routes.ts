@@ -7,6 +7,7 @@ import CaesarCypher from './components/challenges/CaesarCypher.vue';
 import FormAdmin from './components/form-builder/FormAdmin.vue';
 import HomePage from './components/HomePage.vue';
 import DemoLayout from './components/DemoLayout.vue';
+import NostrClient from './components/nostr/NostrClient.vue';
 
 export default [
   { name: 'home', path: '/', component: HomePage },
@@ -50,6 +51,11 @@ export default [
         name: 'form-builder',
         path: 'form-builder',
         component: FormAdmin,
+      },
+      {
+        name: 'nostr',
+        path: 'nostr',
+        component: NostrClient,
       },
     ],
   },
