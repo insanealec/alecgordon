@@ -1,9 +1,16 @@
 import { setActivePinia, createPinia } from 'pinia';
-import { describe, expect, test, beforeEach } from 'vitest';
+import { describe, expect, test, beforeEach, vi } from 'vitest';
+import { generateSecretKey, getPublicKey } from 'nostr-tools/pure';
+import { npubEncode } from 'nostr-tools/nip19';
 import { useNostrStore } from '@/stores/nostr';
+
+// A real npub, since the store rejects keys that don't decode
+const TEST_HEXKEY = getPublicKey(generateSecretKey());
+const TEST_NPUB = npubEncode(TEST_HEXKEY);
 
 describe('Nostr Store', () => {
   beforeEach(() => {
+    localStorage.clear();
     setActivePinia(createPinia());
   });
 
@@ -16,26 +23,37 @@ describe('Nostr Store', () => {
   test('should add author correctly', () => {
     const store = useNostrStore();
     
-    // Should add author (using a basic string since we're not testing key validation)
-    store.addAuthor('test-author-key');
-    expect(store.authors['test-author-key']).not.toBeUndefined();
+    // Should add author and decode its hex key
+    store.addAuthor(TEST_NPUB);
+    expect(store.authors[TEST_NPUB]).toEqual({ pubkey: TEST_NPUB, hexkey: TEST_HEXKEY });
     
     // Should not add duplicate author
     const initialAuthorsCount = Object.keys(store.authors).length;
-    store.addAuthor('test-author-key');
+    store.addAuthor(TEST_NPUB);
     expect(Object.keys(store.authors).length).toBe(initialAuthorsCount);
+  });
+
+  test('should ignore keys that are not valid npubs', () => {
+    const store = useNostrStore();
+    const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+    store.addAuthor('not-a-real-key');
+    expect(store.authors['not-a-real-key']).toBeUndefined();
+    expect(Object.keys(store.authors)).toHaveLength(0);
+
+    consoleError.mockRestore();
   });
 
   test('should remove author correctly', () => {
     const store = useNostrStore();
     
     // Add author first
-    store.addAuthor('test-author-key');
-    expect(store.authors['test-author-key']).not.toBeUndefined();
+    store.addAuthor(TEST_NPUB);
+    expect(store.authors[TEST_NPUB]).not.toBeUndefined();
     
     // Remove author
-    store.removeAuthor('test-author-key');
-    expect(store.authors['test-author-key']).toBeUndefined();
+    store.removeAuthor(TEST_NPUB);
+    expect(store.authors[TEST_NPUB]).toBeUndefined();
   });
 
   test('should add relay correctly', () => {

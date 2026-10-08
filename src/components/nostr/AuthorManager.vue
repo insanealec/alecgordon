@@ -43,12 +43,12 @@ const removeAuthor = (pubkey: string) => {
       </div>
       <div v-else class="flex flex-wrap gap-2">
         <div 
-          v-for="(author, pubkey) in store.authors" 
-          :key="pubkey"
+          v-for="author in Object.values(store.authors)"
+          :key="author.pubkey"
           class="badge badge-outline badge-primary"
         >
           {{ author.pubkey.substring(0, 12) }}...
-          <button @click="removeAuthor(pubkey)" class="ml-2 btn btn-xs btn-circle btn-ghost">×</button>
+          <button @click="removeAuthor(author.pubkey)" class="ml-2 btn btn-xs btn-circle btn-ghost">×</button>
         </div>
       </div>
     </div>

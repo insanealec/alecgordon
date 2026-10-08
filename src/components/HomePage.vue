@@ -5,8 +5,9 @@ import SectionDivider from './shared/SectionDivider.vue';
 import WorkExperience from './WorkExperience.vue';
 import SocialLinks from './SocialLinks.vue';
 import GradientBackground from './GradientBackground.vue';
+import type { SocialLink } from '@/types/home';
 
-const socialLinks = [
+const socialLinks: SocialLink[] = [
   {
     url: "https://github.com/insanealec/",
     label: "GitHub",

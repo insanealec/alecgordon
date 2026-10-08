@@ -1,8 +1,10 @@
 // src/types/home.ts
+export type SocialIcon = 'github' | 'linkedin';
+
 export interface SocialLink {
   url: string;
   label: string;
-  icon: string; // SVG path or component name
+  icon: SocialIcon;
 }
 
 export interface GradientConfig {
