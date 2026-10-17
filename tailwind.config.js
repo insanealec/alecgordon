@@ -1,8 +1,7 @@
-/* eslint-env node */
-const defaultTheme = require('tailwindcss/defaultTheme');
+import defaultTheme from 'tailwindcss/defaultTheme';
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx,vue}",
