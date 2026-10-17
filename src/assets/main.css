@@ -21,36 +21,4 @@
   [role='button']:not(:disabled) {
     cursor: pointer;
   }
-
-  h1 {
-    font-size: 2.25rem;
-    font-weight: bold;
-  }
-
-  h2 {
-    font-size: 2rem;
-    font-weight: 500;
-  }
-
-  h3 {
-    font-size: 1.5rem;
-  }
-
-  h4 {
-    font-size: 1.2rem;
-  }
-
-  input,
-  select {
-    @apply text-sm block w-full p-2.5;
-  }
-}
-
-.indent {
-  padding-left: 2rem;
-}
-
-.paragraph {
-  text-indent: 2rem;
-  padding: 0.25rem 0;
 }

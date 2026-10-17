@@ -28,9 +28,3 @@ export interface Job {
   tech: string[];
   details?: string[];
 }
-
-export interface SectionConfig {
-  title?: string;
-  showGradient?: boolean;
-  maxWidth?: string;
-}

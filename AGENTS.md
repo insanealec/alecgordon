@@ -4,13 +4,14 @@ This file contains guidelines and commands for agentic coding agents working in 
 
 ## Project Overview
 
-This is a Vue 3 + TypeScript personal website for Alec Gordon, built with Vite. The project uses:
+This is a Vue 3 + TypeScript single-page portfolio for Alec Gordon, built with Vite and deployed to GitHub Pages at alecgordon.com. The project uses:
 - **Frontend**: Vue 3 with Composition API and `<script setup>`
-- **State Management**: Pinia stores
-- **Styling**: Tailwind CSS with DaisyUI components
-- **Testing**: Vitest with Vue Test Utils
+- **Routing**: Vue Router with hash history (GitHub Pages has no SPA fallback)
+- **Styling**: Tailwind CSS 4 via `@tailwindcss/vite`
+- **Testing**: Vitest with Vue Test Utils (jsdom)
 - **Build Tool**: Vite
 - **Type Checking**: TypeScript with vue-tsc
+- **Node**: 24+
 
 ## Development Commands
 
@@ -43,14 +44,14 @@ npm run test
 
 ### Testing Commands
 ```bash
-# Run all tests
-npm run test
+# Run all tests once
+npx vitest run
 
 # Run tests in watch mode
-npm run test -- --watch
+npm run test
 
 # Run specific test file
-npm run test src/tests/CategoryCard.test.ts
+npx vitest run src/tests/WorkExperience.test.ts
 
 # Run tests with coverage
 npm run test -- --coverage
@@ -59,118 +60,92 @@ npm run test -- --coverage
 ## Code Style Guidelines
 
 ### File Structure
-- **Components**: `src/components/` - organized by feature (betterlist/, food/, map/, etc.)
-- **Stores**: `src/stores/` - Pinia stores using Composition API
-- **Libraries**: `src/lib/` - utility classes and functions
-- **Tests**: `src/tests/` - test files alongside source
-- **Assets**: `src/assets/` - styles, images, SVGs
+- **Components**: `src/components/` - one component per homepage section (HeroSection, WorkExperience, etc.)
+- **Shared components**: `src/components/shared/` - small reusable pieces (RevealOnScroll, SectionHeading)
+- **Content**: `src/data/profile.ts` - all homepage copy (jobs, strengths, stats, links)
+- **Types**: `src/types/` - shared TypeScript types
+- **Tests**: `src/tests/`
+- **Styles**: `src/assets/main.css` - Tailwind entry point and base styles
+
+### Content
+- Homepage copy lives in `src/data/profile.ts`, not in component templates
+- Don't put an email address or phone number on the site; LinkedIn is the contact channel
 
 ### TypeScript Conventions
 - Use strict TypeScript with proper type definitions
-- Import types with `type` keyword when possible: `import type { Category } from '@/stores/list'`
-- Use interfaces for object shapes, classes for data models
-- Union types with `|` for optional fields: `string|undefined`
-- Default values in class properties: `public version: string = 'v1'`
+- Import types with `type` keyword when possible: `import type { Job } from '@/types/home'`
+- Use interfaces for object shapes
+- Optional fields with `?`: `end?: string`
 
 ### Vue Component Style
 - Always use `<script setup lang="ts">` syntax
 - Use Composition API with `ref`, `computed`, etc.
-- Define props with TypeScript interfaces:
+- Define props with TypeScript generics:
 ```typescript
 const props = defineProps<{
-  category: Category;
+  links: SocialLink[];
+  iconOnly?: boolean;
 }>();
 ```
-- Use `@vueuse/core` utilities for common patterns (useToggle, useFocus, etc.)
+- Use `@vueuse/core` utilities for common patterns (useIntersectionObserver, usePreferredReducedMotion, etc.)
 - Keep template logic minimal, move complex logic to script
 
 ### Import Organization
 1. Vue imports first
-2. Third-party libraries (vue-router, pinia, @vueuse/core)
-3. Local imports (@/ stores, components, lib)
+2. Third-party libraries (vue-router, @vueuse/core)
+3. Local imports (@/ data, types, components)
 4. Relative imports last
 
 Example:
 ```typescript
-import { ref, computed } from 'vue';
-import { defineStore } from 'pinia';
-import { useLocalStorage } from '@vueuse/core';
-import { useListStore } from '@/stores/list';
-import { Form } from '@/lib/form/Form';
+import { ref } from 'vue';
+import { useIntersectionObserver } from '@vueuse/core';
+import { JOBS } from '@/data/profile';
+import SocialLinks from './SocialLinks.vue';
 ```
 
 ### Naming Conventions
-- **Files**: PascalCase for components (CategoryCard.vue), camelCase for utilities
-- **Components**: PascalCase (CategoryCard, FormAdmin)
-- **Stores**: camelCase with `use` prefix (useFormStore, useNostrStore)
-- **Classes**: PascalCase (Form, Question)
-- **Methods/Variables**: camelCase (addCategory, toggleEdit)
-- **Constants**: UPPER_SNAKE_CASE (INITIAL_RELAYS, DEFAULT_CATEGORY)
-
-### State Management (Pinia)
-- Use Composition API style stores
-- Return refs, computed properties, and methods explicitly
-- Use `useLocalStorage` from @vueuse/core for persistence
-- Organize returns with comments for clarity:
-```typescript
-return {
-  // refs
-  relays,
-  authors,
-  events,
-  // computed
-  users,
-  notes,
-  // methods
-  addAuthor,
-};
-```
+- **Files**: PascalCase for components (WorkExperience.vue), camelCase for utilities
+- **Components**: PascalCase (HeroSection, ContactFooter)
+- **Methods/Variables**: camelCase (scrollToSection, currentJob)
+- **Constants**: UPPER_SNAKE_CASE (JOBS, SOCIAL_LINKS, LINKEDIN_URL)
 
 ### Styling Guidelines
-- Use Tailwind CSS classes extensively
-- Leverage DaisyUI components (btn, card, modal, etc.)
-- Dark mode support with `darkMode: 'class'` in Tailwind config
+- Use Tailwind CSS utility classes; the site is dark (slate-950 background, indigo accent)
+- Base styles go inside `@layer base` in `main.css` so utilities can override them
 - Responsive design with sm:, md:, lg: prefixes
-- Component-scoped styles when necessary
+- Respect reduced motion (`motion-reduce:` variants, `usePreferredReducedMotion`)
 
 ### Error Handling
 - Use TypeScript to catch errors at compile time
-- Handle async operations properly in stores
 - Use try-catch blocks for external API calls
 - Validate props and provide default values
 
 ### Testing Guidelines
 - Use Vitest with Vue Test Utils
 - Test components with `mount()` from @vue/test-utils
-- Set up Pinia stores in tests with `createPinia()`
 - Use `describe()` blocks for organization
-- Test user interactions and store integration
-- Snapshot testing for component output
+- Prefer asserting on rendered output and behavior over snapshots
 
 ### Linting Rules
-- ESLint with Vue 3 essential rules
-- TypeScript integration
-- Auto-fix on save recommended
+- ESLint 10 flat config (`eslint.config.mjs`) with Vue essential and TypeScript recommended rules
 - Unused variables allowed if prefixed with `_`
-- Vue-specific rules enforced
 
 ## Path Aliases
 - `@/` maps to `src/` directory
-- Use for all internal imports: `import Form from '@/lib/form/Form'`
+- Use for all internal imports: `import { JOBS } from '@/data/profile'`
 
 ## Development Notes
-- Uses hash-based routing (`createWebHashHistory()`)
-- SCSS available for additional styling
-- Chart.js integrated for data visualization
-- Nostr Tools for social features
-- Mapbox GL for mapping functionality
+- Uses hash-based routing (`createWebHashHistory()`); unknown routes redirect home
+- Section links in the header scroll in code, since the URL hash belongs to the router
+- Deploys automatically on push to main via `.github/workflows/deploy-pages.yml`
 
 ## Before Committing
 Always run these commands:
 ```bash
 npm run type-check
 npm run lint
-npm run test
+npx vitest run
 ```
 
 Ensure all tests pass and there are no TypeScript or ESLint errors before committing changes.
