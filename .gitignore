@@ -29,3 +29,7 @@ coverage
 
 
 src/tests/__snapshots__/*
+
+# Local AI tool settings
+.claude/
+.opencode/
