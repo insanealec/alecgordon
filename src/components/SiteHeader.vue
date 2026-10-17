@@ -20,7 +20,7 @@ const scrollToTop = () => {
 </script>
 
 <template>
-  <header class="sticky top-0 z-40 border-b border-slate-800/80 bg-slate-950/80 backdrop-blur">
+  <header class="sticky top-0 z-40 border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-sm">
     <div class="mx-auto flex max-w-4xl items-center justify-between px-6 py-3">
       <button
         type="button"
