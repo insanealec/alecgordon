@@ -3,7 +3,7 @@ import { STATS } from '@/data/profile';
 </script>
 
 <template>
-  <dl class="grid gap-4 sm:grid-cols-3">
+  <dl class="grid gap-4 sm:grid-cols-2">
     <div
       v-for="stat in STATS"
       :key="stat.label"

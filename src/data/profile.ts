@@ -16,11 +16,9 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
 ];
 
-// TODO: swap the last stat for a real performance win, e.g. "30s → 3s"
 export const STATS: Stat[] = [
   { value: '11+', label: 'years shipping production web apps' },
   { value: '10+', label: 'internal APIs designed and maintained' },
-  { value: '4', label: 'companies across e-commerce, SaaS, and health tech' },
 ];
 
 export const STRENGTHS: Strength[] = [
