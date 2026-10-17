@@ -7,10 +7,26 @@ export interface SocialLink {
   icon: SocialIcon;
 }
 
-export interface GradientConfig {
-  direction?: string;
-  colors?: string[];
-  opacity?: number;
+export interface Stat {
+  value: string;
+  label: string;
+}
+
+export interface Strength {
+  title: string;
+  summary: string;
+  // Stroke-only SVG paths on a 24x24 grid
+  iconPaths: string[];
+}
+
+export interface Job {
+  company: string;
+  title: string;
+  start: string;
+  end?: string; // undefined means current role
+  highlights: string[];
+  tech: string[];
+  details?: string[];
 }
 
 export interface SectionConfig {

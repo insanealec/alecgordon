@@ -1,28 +1,16 @@
 <template>
-  <h2 class="text-3xl font-semibold text-slate-100">
-    Hi, I’m <span class="text-indigo-300">Alec Gordon</span>.
-  </h2>
+  <div class="max-w-3xl space-y-5 text-lg leading-relaxed text-slate-300">
+    <p>
+      I’ve spent 11+ years building and maintaining production web applications, mostly B2B and consumer platforms
+      where reliability, performance, and developer experience actually matter. I’m strongest in Vue and Laravel,
+      and I enjoy working across the stack, especially designing APIs, improving data-heavy workflows, and cleaning
+      up systems that have grown messy over time.
+    </p>
 
-  <p class="paragraph">
-    I’m a senior full-stack software engineer with 11+ years of experience building and maintaining production web
-    applications. I’ve spent most of my career working on B2B and consumer-facing platforms where reliability,
-    performance, and developer experience actually matter.
-  </p>
-
-  <p class="paragraph">
-    I’m strongest in Vue and Laravel, and I enjoy working across the stack — especially designing APIs, improving
-    data-heavy workflows, and cleaning up systems that have grown messy over time. I tend to gravitate toward work
-    that reduces manual effort, improves clarity, and makes the next feature easier to build than the last.
-  </p>
-
-  <p class="paragraph">
-    In senior roles, my impact has come less from process and more from output: shipping solid solutions, spotting
-    weak points early, and helping teams move faster by simplifying complex problems. I’ve worked closely with
-    product and non-technical stakeholders, but I’m happiest when I’m deep in the code and solving real problems.
-  </p>
-
-  <p class="paragraph">
-    Right now, I’m looking for a remote role where I can continue building high-quality software with a thoughtful,
-    pragmatic team.
-  </p>
+    <p>
+      My impact comes less from process and more from output: shipping solid solutions, spotting weak points early,
+      and simplifying complex problems so teams can move faster. I work closely with product and non-technical
+      stakeholders, but I’m happiest deep in the code, solving real problems.
+    </p>
+  </div>
 </template>

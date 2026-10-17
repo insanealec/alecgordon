@@ -1,112 +1,65 @@
 <script setup lang="ts">
-import TimelineCheck from '@/assets/svgs/TimelineCheck.vue';
+import { JOBS } from '@/data/profile';
 </script>
 
 <template>
-  <ul class="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
+  <ol class="ml-1.5 border-l border-slate-800">
+    <li
+      v-for="job in JOBS"
+      :key="job.company"
+      class="relative pb-12 pl-8 last:pb-0"
+    >
+      <span
+        class="absolute -left-[6.5px] top-2 h-3 w-3 rounded-full border-2"
+        :class="job.end ? 'border-slate-600 bg-slate-950' : 'border-indigo-300 bg-indigo-400'"
+        aria-hidden="true"
+      ></span>
 
-    <!-- RoofMaxx -->
-    <li>
-      <div class="timeline-middle">
-        <TimelineCheck />
+      <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+        <h3 class="flex items-center gap-2 text-lg font-semibold text-slate-100">
+          {{ job.company }}
+          <span
+            v-if="!job.end"
+            class="rounded-full bg-indigo-400/10 px-2 py-0.5 text-xs font-medium text-indigo-300"
+          >
+            Current
+          </span>
+        </h3>
+        <span class="font-mono text-sm text-slate-500">{{ job.start }}&ndash;{{ job.end ?? 'now' }}</span>
       </div>
+      <p class="text-slate-400">{{ job.title }}</p>
 
-      <div class="timeline-start md:text-end mb-10">
-        <time class="font-mono italic">2024&mdash;2026</time>
-        <div class="text-lg font-bold">RoofMaxx</div>
+      <ul v-if="job.highlights.length" class="mt-4 space-y-2 text-slate-300">
+        <li
+          v-for="highlight in job.highlights"
+          :key="highlight"
+          class="relative pl-4 leading-relaxed before:absolute before:left-0 before:top-[0.7em] before:h-1 before:w-1 before:rounded-full before:bg-indigo-400/70"
+        >
+          {{ highlight }}
+        </li>
+      </ul>
 
-        <p class="paragraph">
-          As a Senior Software Engineer at Roof Maxx, I worked on a B2B SaaS platform used by dealers and internal
-          corporate teams. I focused on building and improving high-impact features within a large Laravel monolith,
-          with an emphasis on reliability, performance, and reducing manual operational work.
-        </p>
+      <ul v-if="job.tech.length" class="mt-4 flex flex-wrap gap-2" aria-label="Tech used">
+        <li
+          v-for="tech in job.tech"
+          :key="tech"
+          class="rounded-md bg-slate-800/80 px-2 py-0.5 text-xs text-slate-300"
+        >
+          {{ tech }}
+        </li>
+      </ul>
 
-        <p class="paragraph">
-          I owned development of a multi-channel notifications system, internal and SaaS invoicing workflows, and
-          cost reporting features. I also improved load times on report and index-heavy pages to prevent timeouts
-          and improve overall system reliability.
-        </p>
-
-        <p class="paragraph">
-          My senior contributions came primarily through strong technical ownership, deep product knowledge, and
-          consistently delivering solutions that simplified workflows for both dealers and internal teams.
-        </p>
-      </div>
-
-      <div class="timeline-end mb-10">
-          <strong>Tech:</strong> Vue, Laravel, MySQL
-      </div>
-
-      <hr />
+      <details v-if="job.details?.length" class="group mt-4 text-sm">
+        <summary class="inline-flex cursor-pointer list-none items-center gap-1 text-indigo-300 transition-colors hover:text-indigo-200 [&::-webkit-details-marker]:hidden">
+          More detail
+          <svg class="h-4 w-4 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </summary>
+        <div class="mt-3 space-y-2 leading-relaxed text-slate-400">
+          <p v-for="detail in job.details" :key="detail">{{ detail }}</p>
+        </div>
+      </details>
     </li>
-
-    <!-- Ibotta -->
-    <li>
-      <div class="timeline-middle">
-        <TimelineCheck />
-      </div>
-
-      <div class="timeline-end mb-10">
-        <time class="font-mono italic">2021&mdash;2023</time>
-        <div class="text-lg font-bold">Ibotta</div>
-
-        <p class="paragraph">
-          During my time as a Senior Fullstack Engineer at Ibotta,
-          I led projects focused on improving the e-commerce web experience, including accessibility enhancements,
-          navigation improvements, and GraphQL API integrations.
-        </p>
-
-        <p class="paragraph">
-          I regularly scoped initiatives from initial proposals, researching existing APIs and frontend structures
-          to identify opportunities for reuse versus new development. Projects were introduced through team
-          presentations before breaking down work into tickets.
-        </p>
-
-        <p class="paragraph">
-          Many initiatives required supporting legacy and new implementations simultaneously using
-          LaunchDarkly-powered A/B tests, which often meant untangling tightly coupled components to move toward a
-          more modular design.
-        </p>
-
-        <p class="paragraph">
-          The main web stack was a Vue 2 SPA with a GraphQL backend. We also began migrating to Nuxt for SSR to improve
-          initial load performance, using Figma to closely inspect designs and translate them into SCSS.
-        </p>
-      </div>
-
-      <div class="timeline-start md:text-end mb-10">
-          <strong>Tech:</strong> Vue, GraphQL
-      </div>
-
-      <hr />
-    </li>
-
-    <!-- McAlear Group -->
-    <li>
-      <div class="timeline-middle">
-        <TimelineCheck />
-      </div>
-
-      <div class="timeline-start md:text-end mb-10">
-        <time class="font-mono italic">2015&mdash;2021</time>
-        <div class="text-lg font-bold">The McAlear Group</div>
-
-        <p class="paragraph">
-          I spent six years as a Software Developer at The McAlear Group, building custom e-commerce applications,
-          developing and maintaining numerous internal REST APIs, and supporting a large collection of repositories
-          used across sales, manufacturing, and operations.
-        </p>
-      </div>
-
-      <div class="timeline-end mb-10">
-          <strong>Tech:</strong> Laravel, Vue, SqlServer, C#, Java
-      </div>
-
-      <hr />
-    </li>
-
-  </ul>
+  </ol>
 </template>
-
-<style scoped>
-</style>

@@ -3,6 +3,7 @@ import type { SocialIcon, SocialLink } from '@/types/home';
 
 defineProps<{
   links: SocialLink[];
+  iconOnly?: boolean;
 }>();
 
 // 24x24 SVG paths for each supported icon
@@ -13,31 +14,29 @@ const ICON_PATHS: Record<SocialIcon, string> = {
 </script>
 
 <template>
-  <section class="w-full flex justify-center pt-2 pb-4">
-    <div class="flex gap-6">
-      <a
-        v-for="link in links"
-        :key="link.url"
-        :href="link.url"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="text-slate-400 hover:text-indigo-300 transition-colors duration-200 flex items-center gap-2"
-        :aria-label="link.label"
+  <div class="flex items-center gap-5">
+    <a
+      v-for="link in links"
+      :key="link.url"
+      :href="link.url"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-slate-400 hover:text-indigo-300 transition-colors duration-200 flex items-center gap-2"
+      :aria-label="link.label"
+    >
+      <svg
+        :class="iconOnly ? 'w-6 h-6' : 'w-5 h-5'"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+        :aria-hidden="true"
       >
-        <svg
-          class="w-5 h-5"
-          fill="currentColor"
-          viewBox="0 0 24 24"
-          :aria-hidden="true"
-        >
-          <path
-            fill-rule="evenodd"
-            :d="ICON_PATHS[link.icon]"
-            clip-rule="evenodd"
-          />
-        </svg>
-        {{ link.label }}
-      </a>
-    </div>
-  </section>
+        <path
+          fill-rule="evenodd"
+          :d="ICON_PATHS[link.icon]"
+          clip-rule="evenodd"
+        />
+      </svg>
+      <span v-if="!iconOnly">{{ link.label }}</span>
+    </a>
+  </div>
 </template>

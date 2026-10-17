@@ -1,16 +1,19 @@
 import { describe, it, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
-// Importing component to avoid LSP warnings, but not using directly
-// The actual test will run with the component via the project
-import type { ComponentPublicInstance } from 'vue';
+import GradientBackground from '@/components/GradientBackground.vue';
 
 describe('GradientBackground', () => {
-  it('renders correctly with default config', () => {
-    // This test will run properly when component is available
-    expect(true).toBe(true);
+  it('renders slot content', () => {
+    const wrapper = mount(GradientBackground, {
+      slots: { default: '<p class="content">Hello</p>' },
+    });
+
+    expect(wrapper.find('.content').text()).toBe('Hello');
   });
 
-  it('supports custom gradient configuration', () => {
-    expect(true).toBe(true);
+  it('hides the decorative glow from assistive tech', () => {
+    const wrapper = mount(GradientBackground);
+
+    expect(wrapper.find('.glow').attributes('aria-hidden')).toBe('true');
   });
 });

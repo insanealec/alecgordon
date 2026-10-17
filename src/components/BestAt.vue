@@ -1,37 +1,28 @@
+<script setup lang="ts">
+import { STRENGTHS } from '@/data/profile';
+</script>
+
 <template>
-  <section>
-    <h3 class="text-xl font-semibold mb-4">What I’m Best At</h3>
-
-    <ul class="list-disc list-inside space-y-2">
-      <li>
-        Designing and evolving REST APIs, with experience building
-        production APIs in both <strong>C#</strong> and <strong>Laravel</strong>
-      </li>
-
-      <li>
-        Building large, maintainable web applications using <strong>Vue</strong>,
-        with a focus on clarity, performance, and long-term scalability
-      </li>
-
-      <li>
-        Improving reliability and performance in data-heavy systems, including
-        report pages, indexes, and internal tools that need to scale without timing out
-      </li>
-
-      <li>
-        Reducing manual and repetitive workflows by automating processes and
-        designing systems that are easier for both users and developers to work with
-      </li>
-
-      <li>
-        Taking ownership of complex features inside existing codebases and
-        incrementally improving structure without disruptive rewrites
-      </li>
-
-      <li>
-        Working effectively across the stack and collaborating with product and
-        non-technical stakeholders to turn real needs into practical solutions
-      </li>
-    </ul>
-  </section>
+  <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <li
+      v-for="strength in STRENGTHS"
+      :key="strength.title"
+      class="rounded-xl border border-slate-800 bg-slate-900/50 p-5 transition-colors hover:border-indigo-400/40"
+    >
+      <svg
+        class="h-6 w-6 text-indigo-300"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.75"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path v-for="path in strength.iconPaths" :key="path" :d="path" />
+      </svg>
+      <h3 class="mt-3 text-base font-semibold text-slate-100">{{ strength.title }}</h3>
+      <p class="mt-1 text-sm leading-relaxed text-slate-400">{{ strength.summary }}</p>
+    </li>
+  </ul>
 </template>

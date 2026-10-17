@@ -1,56 +1,48 @@
 <script setup lang="ts">
-import AboutMe from './AboutMe.vue';
+import RevealOnScroll from './shared/RevealOnScroll.vue';
+import SectionHeading from './shared/SectionHeading.vue';
+import SiteHeader from './SiteHeader.vue';
+import HeroSection from './HeroSection.vue';
+import StatsStrip from './StatsStrip.vue';
 import BestAt from './BestAt.vue';
-import SectionDivider from './shared/SectionDivider.vue';
 import WorkExperience from './WorkExperience.vue';
-import SocialLinks from './SocialLinks.vue';
-import GradientBackground from './GradientBackground.vue';
-import type { SocialLink } from '@/types/home';
-
-const socialLinks: SocialLink[] = [
-  {
-    url: "https://github.com/insanealec/",
-    label: "GitHub",
-    icon: "github"
-  },
-  {
-    url: "https://linkedin.com/in/alexanderdevongordon",
-    label: "LinkedIn",
-    icon: "linkedin"
-  }
-];
+import AboutMe from './AboutMe.vue';
+import ContactFooter from './ContactFooter.vue';
 </script>
 
 <template>
-  <main class="flex flex-col items-center text-slate-200">
+  <div class="min-h-screen bg-slate-950 text-slate-300 antialiased">
+    <SiteHeader />
 
-    <SocialLinks :links="socialLinks" />
+    <main>
+      <HeroSection />
 
-    <GradientBackground>
-      <AboutMe />
-    </GradientBackground>
+      <section aria-label="At a glance" class="mx-auto max-w-4xl px-6">
+        <StatsStrip />
+      </section>
 
-    <SectionDivider />
+      <section class="mx-auto max-w-4xl px-6 py-16 sm:py-24">
+        <RevealOnScroll>
+          <SectionHeading>What I’m best at</SectionHeading>
+          <BestAt />
+        </RevealOnScroll>
+      </section>
 
-    <section class="w-full flex justify-center py-8 px-6 leading-relaxed tracking-tight">
-      <div class="w-full max-w-3xl">
-        <div class="rounded-xl bg-slate-800/40 border border-slate-700/40 p-7">
-          <BestAt class="border-l-2 border-indigo-400/40 pl-4" />
-        </div>
-      </div>
-    </section>
+      <section id="experience" class="mx-auto max-w-4xl px-6 py-16 sm:py-24">
+        <RevealOnScroll>
+          <SectionHeading>Experience</SectionHeading>
+          <WorkExperience />
+        </RevealOnScroll>
+      </section>
 
-    <SectionDivider />
+      <section id="about" class="mx-auto max-w-4xl px-6 py-16 sm:py-24">
+        <RevealOnScroll>
+          <SectionHeading>About</SectionHeading>
+          <AboutMe />
+        </RevealOnScroll>
+      </section>
+    </main>
 
-    <section class="w-full flex justify-center py-8 px-2">
-      <div class="w-full max-w-4xl">
-        <h3 class="text-xl font-semibold mb-8 text-slate-100">
-          Experience
-        </h3>
-
-        <WorkExperience />
-      </div>
-    </section>
-
-  </main>
+    <ContactFooter />
+  </div>
 </template>
