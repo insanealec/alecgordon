@@ -30,17 +30,14 @@ const OTHER_LINKS = SOCIAL_LINKS.filter((link) => link.url !== LINKEDIN_URL);
 
     <div class="mx-auto flex max-w-4xl flex-wrap items-center justify-between gap-2 border-t border-slate-800/60 px-6 py-6 text-xs text-slate-500">
       <span>&copy; {{ YEAR }} Alec Gordon</span>
-      <span class="flex gap-4">
-        <RouterLink to="/demo/betterlist" class="transition-colors hover:text-slate-300">Playground</RouterLink>
-        <a
-          href="https://github.com/insanealec/alecgordon"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="transition-colors hover:text-slate-300"
-        >
-          Site source
-        </a>
-      </span>
+      <a
+        href="https://github.com/insanealec/alecgordon"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="transition-colors hover:text-slate-300"
+      >
+        Site source
+      </a>
     </div>
   </footer>
 </template>

@@ -15,15 +15,6 @@ module.exports = {
       },
     },
   },
-  plugins: [require("daisyui")],
-  daisyui: {
-    themes: [
-      "dark",
-      "synthwave",
-      "business",
-      "night",
-      "dracula",
-    ],
-  },
+  plugins: [],
 }
 

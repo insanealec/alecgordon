@@ -6,6 +6,7 @@
 body {
   display: flex;
   min-height: 100vh;
+  @apply bg-slate-950;
 }
 
 #app {
