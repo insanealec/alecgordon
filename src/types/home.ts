@@ -17,6 +17,22 @@ export interface Strength {
   summary: string;
   // Stroke-only SVG paths on a 24x24 grid
   iconPaths: string[];
+  // Spans the full row; used for the 7th card so the grid stays even
+  wide?: boolean;
+}
+
+export interface Project {
+  name: string;
+  tagline: string;
+  description: string;
+  url: string;
+  linkLabel: string;
+  sourceUrl?: string;
+  image: string;
+  imageAlt: string;
+  tech: string[];
+  featured?: boolean;
+  status?: string;
 }
 
 export interface Job {

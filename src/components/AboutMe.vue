@@ -12,5 +12,10 @@
       and simplifying complex problems so teams can move faster. I work closely with product and non-technical
       stakeholders, but I’m happiest deep in the code, solving real problems.
     </p>
+
+    <p>
+      Lately I’ve been working as a product engineer, directing AI coding agents to take products like HomeStowage
+      from idea to launch while I own the design, the review, and the result.
+    </p>
   </div>
 </template>

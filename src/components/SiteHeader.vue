@@ -3,6 +3,7 @@
 const SECTIONS = [
   { id: 'experience', label: 'Experience' },
   { id: 'about', label: 'About' },
+  { id: 'projects', label: 'Projects' },
 ];
 
 const scrollBehavior = (): ScrollBehavior => {

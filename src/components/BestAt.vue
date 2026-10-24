@@ -8,6 +8,7 @@ import { STRENGTHS } from '@/data/profile';
       v-for="strength in STRENGTHS"
       :key="strength.title"
       class="rounded-xl border border-slate-800 bg-slate-900/50 p-5 transition-colors hover:border-indigo-400/40"
+      :class="{ 'sm:col-span-2 lg:col-span-3': strength.wide }"
     >
       <svg
         class="h-6 w-6 text-indigo-300"

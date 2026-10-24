@@ -1,4 +1,4 @@
-import type { Job, SocialLink, Stat, Strength } from '@/types/home';
+import type { Job, Project, SocialLink, Stat, Strength } from '@/types/home';
 
 // No email on the site so scrapers can't harvest it; LinkedIn is the contact channel
 export const LINKEDIN_URL = 'https://linkedin.com/in/alexanderdevongordon';
@@ -51,6 +51,60 @@ export const STRENGTHS: Strength[] = [
     title: 'Cross-team work',
     summary: 'Turning product needs into working software',
     iconPaths: ['M12 8a3 3 0 1 0-6 0 3 3 0 0 0 6 0z', 'M3 20a6 6 0 0 1 12 0', 'M16 5a3 3 0 0 1 0 6', 'M21 20a6 6 0 0 0-4-5.6'],
+  },
+  {
+    title: 'AI product engineering',
+    summary: 'Shipping whole products end to end by directing AI coding agents',
+    iconPaths: ['M11 3l1.8 4.9L17.7 9.7l-4.9 1.8L11 16.4l-1.8-4.9-4.9-1.8 4.9-1.8z', 'M18 14v6', 'M15 17h6'],
+    wide: true,
+  },
+];
+
+export const PROJECTS: Project[] = [
+  {
+    name: 'HomeStowage',
+    tagline: 'Know what you’ve got. Know where it’s stowed.',
+    description: 'A home inventory and shopping-list app I run as a live product. Track items across rooms and storage spots, get flagged when something runs low or is about to expire, and turn what’s running out into grocery lists grouped by store aisle. Households share an inventory with view-only or edit access, there’s a free tier with paid plans through Stripe, and a built-in MCP server lets AI assistants like Claude check stock and add to your lists directly.',
+    url: 'https://homestowage.com/',
+    linkLabel: 'Visit site',
+    image: '/projects/homestowage.webp',
+    imageAlt: 'HomeStowage landing page: shared lists and inventory for everyone in the house',
+    tech: ['Laravel 12', 'Angular 21', 'Tailwind 4', 'Stripe', 'MCP', 'Pest'],
+    featured: true,
+  },
+  {
+    name: 'GambaRun',
+    tagline: 'A casino simulator that shows you the house edge.',
+    description: 'A roguelike casino with fake credits and 11 games, built to make gambling math visible. Each game’s payout rate is computed live from its real payout table, every result is decided before the animation plays, and simulation tests confirm each game’s long-run returns match its stated odds.',
+    url: 'https://gamba.insanealec.workers.dev/',
+    linkLabel: 'Play',
+    sourceUrl: 'https://github.com/insanealec/gamba',
+    image: '/projects/gambarun.webp',
+    imageAlt: 'GambaRun game lobby with each game’s return-to-player and house edge',
+    tech: ['Vue 3', 'TypeScript', 'Pinia', 'GSAP', 'Vitest'],
+  },
+  {
+    name: 'Chalk & Brimstone',
+    tagline: 'Summon spirits and rise through 1893 Chicago’s machine politics.',
+    description: 'A narrative strategy game where a political machine of magicians runs City Hall. Piece together each spirit’s true name, runes and incense from scraps of lore, then bind it as a servant, an enchanted tool or a familiar while strikes, elections and the World’s Fair reshape the city. A seeded test page plays whole games automatically to tune difficulty.',
+    url: 'https://chalk-and-brimstone.insanealec.workers.dev/',
+    linkLabel: 'Play',
+    sourceUrl: 'https://github.com/insanealec/chalk-and-brimstone',
+    image: '/projects/chalk-and-brimstone.webp',
+    imageAlt: 'Chalk & Brimstone opening screen over the summoning chamber',
+    tech: ['JavaScript', 'No build step', 'Cloudflare Workers'],
+  },
+  {
+    name: 'Etherwake',
+    tagline: 'Surf the solar winds at the edge of a nebula.',
+    description: 'A 3D space-fantasy surfing game in the browser. Ride glowing swells on a solar board, land tricks for credits, run courier jobs between floating ports, and explore regions like the Flare Reach and the Rim. The ocean, sky and ports are generated in code on three.js’s WebGPU renderer.',
+    url: 'https://etherwake.insanealec.workers.dev/',
+    linkLabel: 'Play',
+    sourceUrl: 'https://github.com/insanealec/etherwake',
+    image: '/projects/etherwake.webp',
+    imageAlt: 'Etherwake title screen over a glowing purple sea under an eclipsed star',
+    tech: ['three.js', 'WebGPU', 'JavaScript', 'Vite'],
+    status: 'In progress',
   },
 ];
 
