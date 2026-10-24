@@ -28,11 +28,6 @@ export const STRENGTHS: Strength[] = [
     iconPaths: ['M8 9l-3 3 3 3', 'M16 9l3 3-3 3', 'M13.5 6l-3 12'],
   },
   {
-    title: 'Vue at scale',
-    summary: 'Large apps that stay clear and maintainable',
-    iconPaths: ['M12 3l9 5-9 5-9-5 9-5z', 'M3 13l9 5 9-5'],
-  },
-  {
     title: 'Performance',
     summary: 'Data-heavy pages that don\'t time out',
     iconPaths: ['M13 3L4 14h7l-1 7 9-11h-7l1-7z'],
@@ -56,7 +51,6 @@ export const STRENGTHS: Strength[] = [
     title: 'AI product engineering',
     summary: 'Shipping whole products end to end by directing AI coding agents',
     iconPaths: ['M11 3l1.8 4.9L17.7 9.7l-4.9 1.8L11 16.4l-1.8-4.9-4.9-1.8 4.9-1.8z', 'M18 14v6', 'M15 17h6'],
-    wide: true,
   },
 ];
 
