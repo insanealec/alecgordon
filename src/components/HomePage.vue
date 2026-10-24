@@ -22,28 +22,28 @@ import ContactFooter from './ContactFooter.vue';
         <StatsStrip />
       </section>
 
-      <section class="mx-auto max-w-4xl px-6 py-16 sm:py-24">
+      <section class="mx-auto max-w-4xl px-6 py-12 sm:py-16">
         <RevealOnScroll>
           <SectionHeading>What I’m best at</SectionHeading>
           <BestAt />
         </RevealOnScroll>
       </section>
 
-      <section id="experience" class="mx-auto max-w-4xl px-6 py-16 sm:py-24">
+      <section id="experience" class="mx-auto max-w-4xl px-6 py-12 sm:py-16">
         <RevealOnScroll>
           <SectionHeading>Experience</SectionHeading>
           <WorkExperience />
         </RevealOnScroll>
       </section>
 
-      <section id="about" class="mx-auto max-w-4xl px-6 py-16 sm:py-24">
+      <section id="about" class="mx-auto max-w-4xl px-6 py-12 sm:py-16">
         <RevealOnScroll>
           <SectionHeading>About</SectionHeading>
           <AboutMe />
         </RevealOnScroll>
       </section>
 
-      <section id="projects" class="mx-auto max-w-4xl px-6 py-16 sm:py-24">
+      <section id="projects" class="mx-auto max-w-4xl px-6 py-12 sm:py-16">
         <RevealOnScroll>
           <SectionHeading>Side projects</SectionHeading>
           <ProjectsSection />

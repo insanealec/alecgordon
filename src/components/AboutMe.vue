@@ -8,8 +8,8 @@
     </p>
 
     <p>
-      My impact comes less from process and more from output: shipping solid solutions, spotting weak points early,
-      and simplifying complex problems so teams can move faster. I work closely with product and non-technical
+      I’m at my best shipping solid solutions, spotting weak points early, and simplifying complex problems so teams
+      can move faster. I work closely with product and non-technical
       stakeholders, but I’m happiest deep in the code, solving real problems.
     </p>
 

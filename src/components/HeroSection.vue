@@ -22,7 +22,8 @@ const currentJob = JOBS.find((job) => !job.end);
       </h1>
 
       <p class="mt-5 max-w-2xl text-lg leading-relaxed text-slate-300 sm:text-xl">
-        Senior full-stack engineer. I build APIs and Vue apps that stay fast as they grow.
+        Senior full-stack engineer. I build the systems businesses run on, like billing, logistics, and reporting,
+        and I ship my own products on the side.
       </p>
 
       <p class="mt-3 text-sm text-slate-500">
