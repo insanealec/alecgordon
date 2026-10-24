@@ -104,12 +104,19 @@ export const PROJECTS: Project[] = [
 
 export const JOBS: Job[] = [
   {
-    // TODO: confirm title and start date, and add 2-3 highlights
     company: 'Medbridge',
-    title: 'Senior Software Engineer',
+    title: 'Software Engineer II',
     start: '2026',
-    highlights: [],
-    tech: [],
+    highlights: [
+      'Stopped clinicians missing patient events by adding alerts for unread messages and monitoring changes',
+      'Saved billing staff clicks by showing billing readiness and copy-ready details on the patient list',
+      'Built the first version of a new org settings app so any team can add settings through its own API',
+    ],
+    tech: ['Angular', 'TypeScript', 'Laravel', 'PHP', 'Cypress'],
+    details: [
+      'Medbridge makes digital care software for physical therapy clinics. I work on the team that builds the clinician-facing dashboard, across the Angular front end and the Laravel back end.',
+      'I set up and built the first version of the org settings app on my own and set the patterns other teams now follow, including making every state mockable so screens can be built and tested without live data. I also built alert snoozing across the API and UI, take my turn running the weekly release across several repositories, and keep the end-to-end tests passing as screens change.',
+    ],
   },
   {
     company: 'Roof Maxx',

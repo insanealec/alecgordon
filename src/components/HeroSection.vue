@@ -14,7 +14,7 @@ const currentJob = JOBS.find((job) => !job.end);
         class="inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1 text-xs font-medium text-emerald-300"
       >
         <span class="h-1.5 w-1.5 rounded-full bg-emerald-400" aria-hidden="true"></span>
-        {{ currentJob.title }} at {{ currentJob.company }}
+        Currently at {{ currentJob.company }}
       </p>
 
       <h1 class="mt-6 text-5xl font-bold tracking-tight text-slate-50 sm:text-6xl">
@@ -27,7 +27,7 @@ const currentJob = JOBS.find((job) => !job.end);
       </p>
 
       <p class="mt-3 text-sm text-slate-500">
-        Vue · Laravel · C# · Maumee, OH (remote)
+        Vue · Angular · Laravel · C# · Maumee, OH (remote)
       </p>
 
       <div class="mt-9 flex flex-wrap items-center gap-3">
